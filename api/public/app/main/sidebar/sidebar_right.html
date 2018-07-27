@@ -1,0 +1,119 @@
+<div id="alert" class="side-nav">
+    <a href="#" class="cerrar orange-text">
+            <i class="icon-cerrar"></i>
+    </a>
+    <div class="paneles">
+            <script type="text/javascript">
+                    function tabs(variable){
+
+                            // botones
+                            var botones = document.querySelectorAll('#alert .tab a');
+
+                            [].forEach.call(botones, function(el) {
+                                    el.classList.remove("active");
+                            });
+
+                            var thisTab = '#alert .tab.' + variable + ' a';
+                            document.querySelector(thisTab).className = "active"
+
+                            //contenidos
+                            var contenido = document.querySelectorAll('#alert .contenttabs');
+
+                            [].forEach.call(contenido, function(el) {
+                                    el.classList.remove("active");
+                            });
+
+                            var thisContent = '#' + variable;
+                            document.querySelector(thisContent).className = "contenttabs active"
+
+                    }
+            </script>
+            <ul class="tabs">
+                    <li class="tab proceso"><a class="active" href="#proceso" onclick="tabs('proceso')"><i class="icon-progreso"></i></a></li>
+                    <li class="tab finalizados"><a href="#finalizados" onclick="tabs('finalizados')"><i class="icon-progreso-fin"></i></a></li>
+                    <li class="tab espera"><a href="#espera" onclick="tabs('espera')"><i class="icon-programada"></i></a></li>
+            </ul>
+            <div id="proceso" class="contenttabs active">
+                    <ul>
+                            <li>
+                                    <div class="control-sidebar-subheading">
+                                            Importación lista 1
+                                            <span class="label pull-right">70%</span>
+                                    </div>
+
+                                    <div class="progress progress-xxs">
+                                            <div class="progress-bar" style="width: 70%"></div>
+                                    </div>
+                            </li>
+                            <li>
+                                    <div class="control-sidebar-subheading">
+                                            Importación lista 2
+                                            <span class="label pull-right">95%</span>
+                                    </div>
+
+                                    <div class="progress progress-xxs">
+                                            <div class="progress-bar" style="width: 95%"></div>
+                                    </div>
+                            </li>
+                            <li>
+                                    <div class="control-sidebar-subheading">
+                                            Envio promo
+                                            <span class="label pull-right">50%</span>
+                                    </div>
+
+                                    <div class="progress progress-xxs">
+                                            <div class="progress-bar" style="width: 50%"></div>
+                                    </div>
+                            </li>
+                    </ul>
+            </div>
+            <div id="finalizados" class="contenttabs">
+                    <ul>
+                            <li>
+                                    <div class="control-sidebar-subheading">
+                                            Importación lista 1
+                                            <span class="label pull-right">14:25</span>
+                                    </div>
+
+                                    <div class="progress progress-xxs">
+                                            <div class="progress-bar" style="width: 100%"></div>
+                                    </div>
+                            </li>
+                            <li>
+                                    <div class="control-sidebar-subheading">
+                                            Importación lista 2
+                                            <span class="label pull-right">16:30</span>
+                                    </div>
+
+                                    <div class="progress progress-xxs">
+                                            <div class="progress-bar" style="width: 100%"></div>
+                                    </div>
+                            </li>
+                            <li>
+                                    <div class="control-sidebar-subheading">
+                                            Envio promo
+                                            <span class="label pull-right">23:00</span>
+                                    </div>
+
+                                    <div class="progress progress-xxs">
+                                            <div class="progress-bar" style="width: 100%"></div>
+                                    </div>
+                            </li>
+                    </ul>
+            </div>
+            <div id="espera" class="contenttabs">
+                    <ul>
+                            <li>
+                                    <div class="control-sidebar-subheading">
+                                            Importación lista 1
+                                            <span class="label pull-right">0%</span>
+                                    </div>
+
+                                    <div class="progress progress-xxs">
+                                            <div class="progress-bar" style="width: 0%"></div>
+                                    </div>
+                            </li>
+                    </ul>
+            </div>
+    </div>
+</div>

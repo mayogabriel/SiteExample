@@ -1,0 +1,76 @@
+<a class="btn hide" href="#asociarModal" modal="" open="uiListPickerService.opened" dismissible='false'><span class="ng-scope">Show Modal</span></a>
+<!-- Modal Structure -->
+<div id="asociarModal" class="modal" data-ng-keydown="uiListPickerService.onKeyDown($event);" style="max-height: 80%; width: 95%;">
+    <div class="modal-content">
+        <h2>{{'Selecciona listas de contactos'}}</h2>                
+        <!-- THROBBER AUXILIAR -->
+                <!-- <div class="ui-loader-ring-center" data-ng-show="uiMaillistPickerService.listHttpQuery.fetching">
+                   <p>{{'Cargando listas...'}}</p>
+                   <ui-loader-ring />
+                </div>
+        <!-- LIST SELECTOR -->
+        
+        <div class="row">
+            <!-- COLUMNS -->
+            <div class="input-field col s6 m4 l4">
+                <i class="icon-buscar prefix"></i>
+                <input id="search" type="text" data-ng-model="searchValue" data-ng-change="highlight(0);">
+                <label for="search">Buscar</label>
+            </div>
+            
+            <ul class="botonera col s6 m8 l8">
+                <li>
+                    <a class="btn azul" data-ng-click="uiListPickerService.save();" tabindex="4"><i class="icon-guardar"></i>{{'Aplicar'}}</a>
+                </li>
+                <li>
+                    <a class="btn celeste" data-ng-click="uiListPickerService.close();" tabindex="5"><i class="icon-cancelar"></i> {{'Cancelar'}}</a>
+                </li>
+            </ul>
+        </div>
+        <div class='row'>
+        <!-- data-ng-hide="uiListPickerService.listHttpQuery.fetching" -->
+            <div class="col s6 m6 l6">
+                <div  class="ui-column-list-container">
+                    <div class="row" style="position: relative;" data-ng-focus="$event.preventDefault();">
+                        <ul class="listas a_agregar col s10 m10 l11" tabindex="5">
+                            <li data-ng-click="uiListPickerService.add(item);" unselected='on'
+                                data-ng-repeat="item in (uiListPickerService.availableListFiltered = (uiListPickerService.availableList | filter : {name : searchValue} ))"
+                                data-ng-class="{'highlighted' : (highlightIndex === $index), 'disabled' : uiListPickerService.maxReached}">
+                                {{item.name}} ( {{item.total_actives}} )<i class="fa fa-angle-right" aria-hidden="true"></i>
+                            </li>
+                        </ul>
+                        <div class="col s2 m2 l1">
+                            <button class="agregar_listas"
+                                    data-ng-click="uiListPickerService.addAll();"
+                                    data-ng-class="{'disabled' : !uiListPickerService.availableList.length}"
+                                    data-ng-disabled="!uiListPickerService.availableList.length || uiListPickerService.maxReached">
+                                <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col s6 m6 l6 columna-derecha">
+                <div class="row" style="position: relative;" data-ng-focus="$event.preventDefault();">
+                    <div class="col s2 m2 l1">
+                        <button class="quitar_listas" 
+                                data-ng-click="uiListPickerService.removeAll();"
+                                data-ng-class="{'disabled' : !uiListPickerService.selectedList.length}"
+                                data-ng-disabled="!uiListPickerService.selectedList.length">
+                            <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                    <ul class="listas agregados col s10 m10 l11 offset-s2 offset-m2 offset-l1">
+                        <li unselected='on'
+                            data-ng-repeat="item in uiListPickerService.selectedList" 
+                            data-ng-click="uiListPickerService.remove(item);">
+                           {{item.name}} ({{item.total_actives}})<i class="fa fa-angle-left" aria-hidden="true"></i>
+                        </li>
+                    </ul>
+                </div> 
+            </div>
+        </div>
+    </div>
+    
+</div>

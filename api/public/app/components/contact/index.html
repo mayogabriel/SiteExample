@@ -1,0 +1,20 @@
+<div data-ng-controller="contactController">
+    <div data-ng-if="route.mainView === 'lists'" data-ng-controller="ListController">
+        <section data-ng-if="route.subView === 'list'" data-ng-controller="ListListController as listCtrl" data-ng-include="getTemplateView('list.list', 'contact')"></section>
+        <section data-ng-if="route.subView === 'add' || route.subView === 'edit'" data-ng-controller="ListFormController as formCtrl" data-ng-include="getTemplateView('list.form', 'contact')"></section>
+        <section data-ng-if="route.subView === 'import'" data-ng-controller="ListImportController as importCtrl" data-ng-include="getTemplateView('list.import', 'contact')"></section>
+    </div>
+
+    <div data-ng-if="route.mainView === 'customfield'" data-ng-controller="customFieldController">
+        <section data-ng-if="route.subView === 'list'" data-ng-controller="customFieldListController as listCtrl" data-ng-include="getTemplateView('customfield.list', 'contact')"></section>
+        <section data-ng-if="route.subView === 'add' || route.subView === 'edit'" data-ng-controller="customFieldFormController as formCtrl" data-ng-include="getTemplateView('customfield.form', 'contact')"></section>
+    </div>
+
+    <div data-ng-if="route.mainView === 'subscriptionform'" data-ng-controller="subscriptionFormController">
+        <section data-ng-if="route.subView === 'list'" data-ng-controller="subscriptionFormListController as listCtrl" data-ng-include="getTemplateView('subscriptionform.list', 'contact')"></section>
+        <div data-ng-if="route.subView === 'add' || route.subView === 'edit' || route.subView === 'design'" data-ng-controller="subscriptionFormEditController" >
+                <section data-ng-if="route.subView === 'add' || route.subView === 'edit'" data-ng-include="getTemplateView('subscriptionform.form', 'contact')"></section>
+                <section data-ng-if="route.subView === 'design'" data-ng-controller="subscriptionFormFormDesignController as DesignCtrl" data-ng-include="getTemplateView('subscriptionform.form-design', 'contact')"></section>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+<aside   data-ng-include="'app/main/sidebar/sidebar_right.html'"></aside>
+
+<header id="header" class="page-topbar" ng-include="'app/main/partials/header.html'"></header>
+
+<main id="main" style="position:relative">
+    <!-- Content Wrapper. Contains page content -->
+    <section id="content">
+        <div class="container">
+            <header-component data-ng-if="route.showHeader"
+                              data-title="{{route.header.title}}" 
+                              data-btn="route.header.btn" 
+                              data-sub-nav="{{route.header.subNav}}"
+                              data-breadcrumb="route.header.breadcrumb"></header-component>
+            <div ui-view></div>
+        </div>
+    </section>
+</main>
+
+<!-- Left sde column. contains the logo and sidebar -->
+<aside  id="left-sidebar-nav" class="main-sidebar" 
+        data-ng-include="'app/main/sidebar/sidebar.html'" 
+        data-ng-controller="SidebarController as sidebarCtrl">
+</aside>

@@ -1,0 +1,139 @@
+<div class="card-panel" st-table="listCtrl.rowCollection" 
+                     st-safe-src="listCtrl.rowCollection"
+                     st-pipe="listCtrl.callServer">
+    <div class="row">
+        <div class="col m12 l12">
+            <div class="card-panel card-panel anexo filtro grey lighten-4">
+                <div class="row">
+                    <h3>Filtrar por:</h3>
+                    <div class="input-field col s12 m6 l4">
+                        <input id="dateDesde" 
+                               type="text" 
+                               class="validate"
+                               input-date
+                               container="body"
+                               format="yyyy-mm-dd"
+                               select-years="30"
+                               select-months="true" 
+                               ng-model="listCtrl.filter.created_at.min"
+                               ng-required="">
+                        <label for="dateDesde">Fecha Desde</label>
+                    </div>
+                    <div class="input-field col s12 m6 l4">
+                        <input id="dateHasta" 
+                               type="text" 
+                               class="validate" 
+                               input-date
+                               container="body"
+                               format="yyyy-mm-dd"
+                               select-years="30"
+                               select-months="true" 
+                               ng-model="listCtrl.filter.created_at.max"
+                               ng-required=""
+                               ng-focus="false">
+                        <label for="dateHasta">Fecha Hasta</label>
+                    </div>
+                    
+                    <div class="input-field col s12 m6 l4">
+                        <input id="search" type="text" class="form-control" ng-model="listCtrl.filter.search"/>
+                        <label for="search">Buscar</label>
+                    </div>
+                </div>
+                <div class="right-align">
+                    <a class="btn azul " 
+                        ng-disabled="listCtrl.tableLoading" 
+                        st-custom-action
+                        callback="filterAction()">
+                        <i class="icon-filtros"></i> {{ 'button.filter' | translate }}
+                    </a>
+                    <a  class="btn celeste"
+                        ng-disabled="listCtrl.tableLoading" 
+                        st-custom-action
+                        callback="resetFilter()"><i class="icon-cancelar"></i>{{ 'button.reset' | translate }}
+                    </a>    
+                </div>
+                
+            </div>
+        </div>
+        <div class="col m12 l12">
+            <div class="box box-solid">
+                <table>
+                    <thead>
+                        <tr>
+                           <!--<th>
+                                <st-select-all  all="listCtrl.rowCollection"
+                                                count-selected-rows="listCtrl.countSelectedRows"
+                                                ng-model="isAllSelected">
+                                </st-select-all>
+                            </th>-->
+                            <th st-sort="created_at" data-field="fecha" class="hide-on-small-only">Fecha</th>
+                            <th data-field="name">Nombre</th>
+                            <th st-sort="email" data-field="mail">Mail</th>
+                            <th st-sort="status" data-field="status" class="hide-on-small-only">Estado</th>
+                            <th st-sort="quota" data-field="quota" class="hide-on-small-only">Abono</th>
+                            <th st-sort="credit" data-field="credit" class="hide-on-small-only">Credito</th>
+                            <th st-sort="consumed" data-field="consumed" class="hide-on-small-only">Campañas</th>
+                            <th data-field="actions"></th>
+                        </tr>
+                    </thead>
+                    <tbody  ng-if="!listCtrl.tableLoading">
+                        <tr ng-repeat="row in listCtrl.rowCollection" ng-if="listCtrl.rowCollection.length">
+                            <!--<td><input type="checkbox" ng-checked="row.isSelected" id='row-{{row.id}}'/><label for="row-{{row.id}}"></label></td>-->
+                            <td class="hide-on-small-only">{{ row.created_at | amDateFormat: 'DD.MM.YYYY' }}</td>
+                            <td>{{ row.getFullName() }}<!--<div class="chip red white-text" ng-if="listCtrl.isTimestamp(row.last_login_at) && !row.status">New</div>--></td>
+                            <td><a href="users/{{ row.id }}/edit">{{ row.email }}</a></td>
+                            <td class="hide-on-small-only">{{ row.status | booleanStatus }}</td>
+                            <td class="hide-on-small-only" ng-show="!listCtrl.user">{{ row.roles[0].name }}</td>
+                            <td class="hide-on-small-only">{{ row.plan.quota }}</td>
+                            <td class="hide-on-small-only">{{ row.plan.credit }}</td>
+                            <td class="hide-on-small-only">{{ row.plan.consumed }}</td>
+                            <td class="acciones">
+                                <div class="fixed-action-btn horizontal">
+                                    <a><i class="icon-acciones orange-text"></i></a>
+                                    <ul>
+                                        <li><a data-ui-sref="main.users.edit({UserID: row.id})" class="btn-floating orange" tooltipped data-position="top" data-delay="50" data-tooltip="Editar"><i class="icon-editar"></i></a></li>
+                                        <li><a href="#" ng-really-click="listCtrl.remove(row)" ng-really-message="Sure you want to delete the user {{row.getFullName()}} ?" class="btn-floating red" ><i class="icon-borrar" tooltipped data-position="top" data-delay="50" data-tooltip="Borrar"></i></a></li>
+                                        <li><a data-ui-sref="main.users.by-resseller({UserID: row.id})" class="btn-floating orange" tooltipped data-position="top" data-delay="50" data-tooltip="Reporte de la última campaña"><i class="icon-reportes"></i></a></li>
+                                        <li><a href="#" class="btn-floating orange" tooltipped data-position="top" data-delay="50" data-tooltip="Historial de planes"><i class="icon-historial"></i></a></li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr ng-if="!listCtrl.rowCollection.length">
+                            <td colspan="9" class="text-center">
+                                <p>{{'No se encontraron usuarios asociados a'}} <strong>{{ listCtrl.user.getFullName() }}</strong></p>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tbody ng-if="listCtrl.tableLoading"  class="fade">
+                        <tr>
+                            <td colspan="9" class="center-align" >
+                                <div class="preloader-wrapper big active">
+                                    <div class="spinner-layer spinner-blue-only">
+                                        <div class="circle-clipper left">
+                                            <div class="circle"></div>
+                                        </div>
+                                        <div class="gap-patch">
+                                            <div class="circle"></div>
+                                        </div>
+                                        <div class="circle-clipper right">
+                                            <div class="circle"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="9" class="text-right">
+                                <div st-next-prev-pagination=""
+                                     st-items-by-page="listCtrl.itemsByPage"></div>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

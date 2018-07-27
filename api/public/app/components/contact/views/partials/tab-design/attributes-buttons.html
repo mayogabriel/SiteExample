@@ -1,0 +1,153 @@
+<!-- Botón -->
+<div data-ng-if="editionTabs.currentFieldSelected.EditClass === 'form-button'">
+    
+     <!-- VALORES  -->
+    <div class="row">
+        <div class="collapsible-header blue-text">Valores</div>
+        <div class="col s12 m12" data-ng-class="{'has-error' : false}">
+            <div input-field>
+                <input  id="formTitle" type="text" length="60"
+                        data-ng-model="editionTabs.currentFieldSelected.Label"
+                        data-required/>
+                <label for="formTitle">{{'Etiqueta de texto:'}}</label>
+            </div>
+        </div>
+    </div>
+    
+    <!-- TIPOGRAFIA -->
+    <div class="row">
+        <div class="collapsible-header blue-text">{{ 'Tipografia:' }}</div>
+        <div class="col s12 m8 l8">
+            <div input-field>
+                <div class="label">{{ 'Familia:' }}</div>
+                <select id="familia" class="validate"
+                        material-select watch
+                        data-ng-model="style.button.fontSelected"
+                        ng-options="font.name for font in style.fontList track by font.value">
+                        <option ng-repeat="value in select.tipos">{{value}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="col s12 m4 l4">
+            <div class="font-weight-selector">
+                <div input-field>
+                    <div class="label">{{ 'Estilo:' }}</div>
+                    <select class="" 
+                            name='fontWeightSelected'
+                            material-select watch
+                            data-ng-model="style.button.fontWeightSelected"
+                            ng-options="fontWeight.name for fontWeight in style.fontWeightList track by fontWeight.value" />
+                    </select>
+                </div>
+            </div>
+        </div>
+        <!-- Estilos -->
+        <div class="col s12">
+            <ul>
+                <li class="customvalue setsize">
+                    <div class="label">{{ 'Variables' }}</div>
+                    <div class="content">
+                        <button class="waves-effect waves-light btn"
+                                data-ng-class="{'active':style.button.fontStyleSelected === 'italic'}"
+                                data-ng-click="style.changeTextStyle.toggleItalic('button', style)">
+                                <i class="fa fa-italic" aria-hidden="true"></i>
+                        </button>
+                        <button class="waves-effect waves-light btn"
+                                data-ng-class="{'active':style.button.textDecorationSelected === 'underline'}"
+                                data-ng-click="style.changeTextStyle.toggleUnderline('button', style)">
+                                <i class="fa fa-underline" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </li>
+                <li class="customvalue setsize">
+                    <div class="label">{{ 'Alineación' }}</div>
+                    <div class="content">
+                        <button class="waves-effect waves-light btn"
+                                data-ng-class="{'active':style.button.containerAligment === 'left'}"
+                                data-ng-click="style.button.containerAligment = 'left'">
+                                <i class="fa fa-align-left" aria-hidden="true"></i>
+                        </button>
+                        <button class="waves-effect waves-light btn"
+                                data-ng-class="{'active':style.button.containerAligment === 'center'}"
+                                data-ng-click="style.button.containerAligment = 'center'">
+                                <i class="fa fa-align-center" aria-hidden="true"></i>
+                        </button>
+                        <button class="waves-effect waves-light btn"
+                                data-ng-class="{'active':style.button.containerAligment === 'right'}"
+                                data-ng-click="style.button.containerAligment = 'right'">
+                                <i class="fa fa-align-right" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+    <!-- Colors -->
+    <div class="row">
+        <div class="collapsible-header blue-text">{{ 'Colores' }}</div>
+        <div class="col s12 m12" data-ng-class="{'has-error' : false}">
+            <ul>
+                <li class="customvalue colorpicker">
+                    <div class="label">Contenido</div>
+                    <div class="content font-style-selector-color">
+                        <input type="text" class="texto" minicolors data-ng-model="style.button.fontColorSelected"/>
+                    </div>
+                </li>
+                <li class="customvalue colorpicker">
+                    <div class="label">Borde</div>
+                    <div class="content">
+                        <input class="texto" type="text" minicolors data-ng-model="style.button.borderColorSelected"/>
+                    </div>
+                </li>
+                <li class="customvalue colorpicker">
+                    <div class="label">Fondo</div>
+                    <div class="content">
+                        <input type="text" class="texto" minicolors data-ng-model="style.button.backgroundColorSelected"/>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+    <!-- cabecera font tamaño -->
+    <div class="row">
+        <div class="collapsible-header blue-text"></i>{{ 'Tamaños' }}</div>
+        <div class="col s12 m12" data-ng-class="{'has-error' : false}">
+            <ul>
+                <li class="customvalue setsize">
+                    <div class="label">Texto (px)</div>
+                    <div class="content">
+                        <ui-value-spinner data-ng-model="style.button.fontSizeSelected" disabled="false"></ui-value-spinner>
+                    </div>
+                </li>
+               
+                <li class="customvalue setsize">
+                    <div class="label">Espesor del borde (px)</div>
+                    <div class="content">
+                        <ui-value-spinner data-ng-model="style.button.borderWidthSelected"></ui-value-spinner>
+                    </div>
+                </li>
+                <li class="customvalue setsize">
+                    <div class="label">Redondeo del borde (px)</div>
+                    <div class="content">
+                        <ui-value-spinner data-ng-model="style.button.borderRadiusSelected"></ui-value-spinner>
+                    </div>
+                </li>
+                <li class="customvalue setsize">
+                    <div class="label">Alto del campo (px)</div>
+                    <div class="content">
+                        <ui-value-spinner data-ng-model="style.button.heightSelected"></ui-value-spinner>
+                    </div>
+                </li>
+                <li class="customvalue setsize">
+                    <div class="label">{{'Ancho'}} (%)</div>
+                    <div class="content">
+                        <ui-value-spinner data-ng-model="style.button.widthSelected"></ui-value-spinner>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>   
+</div>

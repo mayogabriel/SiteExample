@@ -1,0 +1,47 @@
+<div class="form-preview-fixed" id='custom-form-nm' 
+     ng-cloak 
+     data-ng-mouseenter="formEditionActions.hoverContainer();" 
+     data-ng-mouseleave="formEditionActions.mouseLeaveContainer();" 
+     data-ng-click="formEditionActions.editContainer($event);" >
+    
+    <div class="form-container-border" data-ng-show="formEditionActions.showContainerBorder" data-ng-class="{'showingToolbar':editionTabs.currentFieldSelected.EditClass === 'form-body'}">
+        <div class="customfield-edit-border-icon" ></div>
+    </div>
+
+    <div id="form-render-preview" data-ng-style="style.container.cssGetter(style)">
+        
+        <div data-ng-if='loadingForm' class="row" style="min-height: 200px;">
+            <div class="form-preview-fixed custom-form custom-form-edit">
+                <ui-circle-loader></ui-circle-loader>
+            </div>
+        </div>
+        
+        <div data-ng-if='!loadingForm'  id="form-subscription-fields" unselectable="on">
+            <div data-ng-repeat="customfield in formFields">
+                <!-- Texto -->
+                <div data-ng-include="getTemplateView('field-custom-text', 'contact', 'partials/form-design-preview')" data-ng-if="customfield.field_type === 'custom_text'"></div>
+
+                <!-- input Email -->
+                <div data-ng-include="getTemplateView('field-email', 'contact', 'partials/form-design-preview')" data-ng-if="customfield.field_type === 'email'"></div>
+                <!-- ----------------------  Campos personalizados  ----------------- -->
+                <!-- Input text -->
+                <div data-ng-include="getTemplateView('field-text', 'contact', 'partials/form-design-preview')" data-ng-if="customfield.field_type === 'text_field'"></div>
+
+                <!-- Input text -->
+                <div data-ng-include="getTemplateView('field-password', 'contact', 'partials/form-design-preview')"  data-ng-if="customfield.field_type === 'Password field'"></div>
+
+                <!-- Select list -->
+                <div data-ng-include="getTemplateView('field-droplist', 'contact', 'partials/form-design-preview')" data-ng-if="customfield.field_type === 'Drop list'"></div>
+
+                <!-- Input radio -->
+                <div data-ng-include="getTemplateView('field-radiobutton', 'contact', 'partials/form-design-preview')" data-ng-if="customfield.field_type === 'radio_button'"></div>
+
+                <!-- Input checkbox -->
+                <div data-ng-include="getTemplateView('field-checkbox', 'contact', 'partials/form-design-preview')" data-ng-if="customfield.field_type === 'check_box' || customfield.field_type === 'List'"></div>
+
+                <!-- Input checkbox -->
+                <div data-ng-include="getTemplateView('button', 'contact', 'partials/form-design-preview')" data-ng-if="customfield.field_type === 'button'"></div>
+            </div>
+        </div>
+    </div>
+</div>

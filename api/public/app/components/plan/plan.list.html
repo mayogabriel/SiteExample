@@ -1,0 +1,75 @@
+<header-component title="Planes">
+    <div class="row">
+        <div class="col s12">
+            <ul class="submenu">
+                <li><a data-ui-sref="main.plan-list({name : 'credits'})" ui-sref-active="active">Creditos</a></li>
+                <li><a data-ui-sref="main.plan-list({name : 'quote'})" ui-sref-active="active">Cuota</a></li>
+            </ul>
+        </div>
+    </div>
+</header-component>
+
+<div class="card-panel">
+    <div class="row cabecera">
+        <div class="col s12">
+            <h2>{{listCtrl.titlePage}}</h2>
+        </div>
+    </div>
+    
+    <div class="col s12" id="credito">
+        <p class="data-planes" ng-if="listCtrl.filter.payment_type === 1">Usted dispone de <a class="cantidad">700 cr&eacute;ditos</a></p>
+        <p class="data-planes" ng-if="listCtrl.filter.payment_type === 2">Usted dispone de un abono de  <a class="cantidad">700 envíos</a></p>
+        <div ng-if='listCtrl.loading' class='' style='position: relative; padding: 40px  0 20px 0'>
+            <ui-circle-loader></ui-circle-loader>
+        </div>
+        <div  ng-if='!listCtrl.loading'>
+            <div class="row">
+                <div class="col s4 m3 l2" ng-repeat="row in listCtrl.rowCollection">
+                    <label for="plan{{row.id}}">
+                        <div class="card-panel center-align seleccion box-planes z-depth-0" data-ng-class="{'active' : listCtrl.planSelected == row.id}">
+
+                            <span class="blue-text lighten-2 cantidad">{{row.quota}}</span>
+                            <span class="descripcion">{{listCtrl.titlePage}}</span>
+                            <hr>
+                            <span class="precio">{{row.value | currency : "$ ": 2}}</span>
+                            <p>
+                                <input name="credito" value="{{row.id}}" type="radio" id="plan{{row.id}}" ng-model="listCtrl.planSelected"/>
+                                <label class="blue-text lighten-2" for="plan{{row.id}}"></label>
+                            </p>
+                        </div>
+                    </label>
+
+                </div>            
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col s12 m8">
+                    <span class="aclaracion">* Precios vigentes hasta </span>
+                </div>
+                <div class="col s12 m4 right-align">
+                    <button type="button" 
+                            ng-really-click="listCtrl.buyAction()"
+                            ng-really-message="¿Seguro que desea comprar créditos?"
+                            ng-if="listCtrl.filter.payment_type === 1" 
+                            ng-disabled="!listCtrl.planSelected || listCtrl.actionLoading" 
+                            ng-class="{'disabled': !listCtrl.planSelected || listCtrl.actionLoading}" 
+                            class="btn-large azul">
+                        <span ng-if="!listCtrl.actionLoading">{{'Comprar Créditos'|translate}}</span>
+                        <span ng-if="listCtrl.actionLoading"><i class="fa fa-spin fa-spinner"></i></span>
+                    </button>
+                    <button type="button" 
+                            ng-really-click="listCtrl.changeQuote()"
+                            ng-really-message="¿Seguro que desea cambiar su plan?"
+                            ng-if="listCtrl.filter.payment_type === 2" 
+                            ng-disabled="!listCtrl.planSelected || listCtrl.actionLoading" 
+                            ng-class="{'disabled': !listCtrl.planSelected || listCtrl.actionLoading}" 
+                            class="btn-large azul">
+                            <span ng-if="!listCtrl.actionLoading">{{'Cambiar Plan'|translate}}</span>
+                            <span ng-if="listCtrl.actionLoading"><i class="fa fa-spin fa-spinner"></i></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>

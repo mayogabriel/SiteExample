@@ -1,0 +1,23 @@
+
+<div class="form-subscription-drop"
+     data-ng-class="{hover : $hover}"
+     data-ui-onhover="formEditionActions.hover($dragModel,$index);"
+     data-ui-drop="formEditionActions.onDrop($dragModel,$index);">
+    <div class="drop-area"></div>
+    <div class="form-subscription-drop-arrow arrow-left"></div>
+    <div class="form-subscription-drop-arrow arrow-right"></div>
+</div>
+
+<customfield-edit-frame data-customfield-model="customfield"
+                        click-action="formEditionActions.editField(customfield)"
+                        mouse-enter-action="formEditionActions.mouseEnterField()"
+                        mouse-leave-action="formEditionActions.mouseLeaveField()"
+                        trash-button-action="formEditionActions.removeField(customfield)"
+                        no-delete="true"
+                        no-drag="true"
+                        no-drop="true"
+                        enabled="enableCustomfieldEditFrame">
+    <div id="form-subscription-envialosimple-1-submit" style="text-align: {{style.button.containerAligment}}">
+        <input type="submit" value="{{customfield.Label}}" data-ng-style="style.button.cssGetter(style)" />
+    </div>
+</customfield-edit-frame>

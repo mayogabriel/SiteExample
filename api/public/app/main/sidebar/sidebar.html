@@ -1,0 +1,10 @@
+<!-- Sidebar Menu -->
+<ul id="slide-out" class="side-nav fixed collapsible" data-collapsible="accordion">
+    <!-- Optionally, you can add icons to the links -->
+    <li ng-repeat="item in sidebarCtrl.menu" ng-if="item.enabled"
+        ng-class="{ 'treeview': (item.children!==undefined), 
+                    'active': (item.children) && item.open, 
+                    'header': item.type === 'header' }"
+        ng-include="'app/main/sidebar/sidebar.item.loop.html'"></li>
+</ul>
+<!-- /.sidebar-menu -->

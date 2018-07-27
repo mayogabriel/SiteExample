@@ -1,0 +1,164 @@
+<!-- START CONTENT -->
+<section id="content" class="dashboard">
+    <!--start container-->
+    <div class="container">
+
+        
+        <div ng-include="'/app/components/dashboard/partials/resumeAccount.html'"></div>
+        
+        <div class="row">
+                <div class="col m4 s12 center-align">
+                        <div class="card-panel">
+                                <h2><i class="icon-campanas"></i>{{ 'Campañas' }}</h2>
+                                <p>1000 campañas cargadas</p>
+                                <p>70 enviadas</p>
+                                <a  data-ui-sref='main.coming-soon' class="btn orange white-text">{{ 'Crear nueva campaña' }}</a>
+                        </div>
+                </div>
+                <div class="col m4 s12 center-align">
+                        <div class="card-panel">
+                                <h2><i class="icon-contactos"></i>{{ 'Contactos' }}</h2>
+                                <p>15000 Suscriptores</p>
+                                <p><br></p>
+                                <a data-ui-sref='main.contacts.lists-store' class="btn orange white-text">{{ 'Crear nueva lista' }}</a>
+                        </div>
+                </div>
+                <div class="col m4 s12 center-align">
+                        <div class="card-panel">
+                                <h2><i class="icon-reportes"></i>{{ 'Reportes' }}</h2>
+                                <p>Campaña: <strong>Compumundo</strong></p>
+                                <p>25% de aperturas</p>
+                                <a data-ui-sref='main.coming-soon' class="btn orange white-text">{{ 'Ver reporte completo' }} </a>
+                        </div>
+                </div>
+        </div>
+        
+        <div ng-controller='DashboardAdminController as dashboardAdminCtrl'>
+            <ul class="collapsible" data-collapsible="accordion" >
+                <li>
+                    <div class="collapsible-header"><h3>{{ 'Reporte general de sus &uacute;tlimas campa&ntilde;as' }}</h3></div>
+                    <div class="collapsible-body">
+                        <canvas id="line" class="chart chart-line" chart-data="dashboardAdminCtrl.data" chart-legend="true"
+                            chart-labels="dashboardAdminCtrl.labels" chart-series="dashboardAdminCtrl.series" chart-options="dashboardAdminCtrl.options" 
+                            chart-dataset-override="dashboardAdminCtrl.datasetOverride" chart-click="dashboardAdminCtrl.onClick">
+                        </canvas>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        
+        
+        <ul class="collapsible" data-collapsible="accordion" watch>
+                <li>
+                    <div class="collapsible-header"><h3>{{ 'Ultimas campa&ntilde;as cargadas' }}</h3></div>
+                    <div class="collapsible-body">																
+                        <table>
+                            <thead>
+                                    <tr>
+                                            <th data-field="name" class="st-sort-ascent">Nombre</th>
+                                            <th data-field="fecha" class="st-sort hide-on-small-only">Fecha</th>
+                                            <th data-field="estado" class="st-sort ">Estado</th>
+                                            <th data-field="abono" class="st-sort ">Destinatarios</th>
+                                            <th data-field="credito" class="st-sort ">Aperturas</th>
+                                            <th data-field="campanas" class="st-sort ">Clicks</th>
+                                            <th data-field="âcciones"></th>
+                                    </tr>
+                            </thead>
+
+                                <tbody>
+                                        <tr>
+                                                <td>Juan</td>
+                                                <td class="hide-on-small-only">10,5,2015</td>
+                                                <td class=""><i class="icon-programada" tooltipped data-position="top" data-delay="50" data-tooltip="Programada"></i></td>
+                                                <td class="">1230</td>
+                                                <td class="">0</td>
+                                                <td class="">2</td>
+                                                <td class="acciones">
+                                                        <div class="fixed-action-btn horizontal">
+                                                        <a><i class="icon-acciones orange-text"></i></a>
+                                                                <ul>
+                                                                        <li><a href="#" class="btn-floating red" tooltipped data-position="top" data-delay="50" data-tooltip="Borrar"><i class="icon-borrar"></i></a></li>
+                                                                        <li><a href="user-edit.html" class="btn-floating orange" tooltipped data-position="top" data-delay="50" data-tooltip="Editar"><i class="icon-editar"></i></a></li>
+                                                                </ul>
+                                                        </div>
+                                                </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Juan</td>
+                                            <td class="hide-on-small-only">10,5,2015</td>
+                                            <td class=""><i class="icon-borrador" tooltipped data-position="top" data-delay="50" data-tooltip="Borrador"></i></td>
+                                            <td class="">1230</td>
+                                            <td class="">0</td>
+                                            <td class="">2</td>
+                                            <td class="acciones">
+                                                    <div class="fixed-action-btn horizontal">
+                                                    <a><i class="icon-acciones orange-text"></i></a>
+                                                            <ul>
+                                                                    <li><a href="#" class="btn-floating red" tooltipped data-position="top" data-delay="50" data-tooltip="Borrar"><i class="icon-borrar"></i></a></li>
+                                                                    <li><a href="user-edit.html" class="btn-floating orange" tooltipped data-position="top" data-delay="50" data-tooltip="Editar"><i class="icon-editar"></i></a></li>
+                                                            </ul>
+                                                    </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                        <td>Juan</td>
+                                                        <td class="hide-on-small-only">10,5,2015</td>
+                                                        <td class=""><i class="icon-campana enviada" tooltipped data-position="top" data-delay="50" data-tooltip="Enviada"></i></td>
+                                                        <td class="">1230</td>
+                                                        <td class="">0</td>
+                                                        <td class="">2</td>
+                                                        <td class="acciones">
+                                                                <div class="fixed-action-btn horizontal">
+                                                                <a><i class="icon-acciones orange-text"></i></a>
+                                                                        <ul>
+                                                                                <li><a href="#" class="btn-floating red" tooltipped data-position="top" data-delay="50" data-tooltip="Borrar"><i class="icon-borrar"></i></a></li>
+                                                                                <li><a href="user-edit.html" class="btn-floating orange" tooltipped data-position="top" data-delay="50" data-tooltip="Editar"><i class="icon-editar"></i></a></li>
+                                                                        </ul>
+                                                                </div>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>Juan</td>
+                                                        <td class="hide-on-small-only">10,5,2015</td>
+                                                        <td class=""><i class="icon-campana cancelada" tooltipped data-position="top" data-delay="50" data-tooltip="Cancelada"></i></td>
+                                                        <td class="">1230</td>
+                                                        <td class="">0</td>
+                                                        <td class="">2</td>
+                                                        <td class="acciones">
+                                                                <div class="fixed-action-btn horizontal">
+                                                                <a><i class="icon-acciones orange-text"></i></a>
+                                                                        <ul>
+                                                                                <li><a href="#" class="btn-floating red" tooltipped data-position="top" data-delay="50" data-tooltip="Borrar"><i class="icon-borrar"></i></a></li>
+                                                                                <li><a href="user-edit.html" class="btn-floating orange" tooltipped data-position="top" data-delay="50" data-tooltip="Editar"><i class="icon-editar"></i></a></li>
+                                                                        </ul>
+                                                                </div>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>Juan</td>
+                                                        <td class="hide-on-small-only">10,5,2015</td>
+                                                        <td class=""><i class="icon-progreso" tooltipped data-position="top" data-delay="50" data-tooltip="En progreso"></i></td>
+                                                        <td class="">1230</td>
+                                                        <td class="">0</td>
+                                                        <td class="">2</td>
+                                                        <td class="acciones">
+                                                                <div class="fixed-action-btn horizontal">
+                                                                <a><i class="icon-acciones orange-text"></i></a>
+                                                                        <ul>
+                                                                                <li><a href="#" class="btn-floating red" tooltipped data-position="top" data-delay="50" data-tooltip="Borrar"><i class="icon-borrar"></i></a></li>
+                                                                                <li><a href="user-edit.html" class="btn-floating orange" tooltipped data-position="top" data-delay="50" data-tooltip="Editar"><i class="icon-editar"></i></a></li>
+                                                                        </ul>
+                                                                </div>
+                                                        </td>
+                                                </tr>
+
+                                        </tbody>
+                                </table>
+                        </div>
+                </li>
+        </ul>
+
+</div>
+<!--end container-->
+</section>
+			<!-- END CONTENT -->

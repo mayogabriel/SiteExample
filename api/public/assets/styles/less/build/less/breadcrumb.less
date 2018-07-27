@@ -1,0 +1,32 @@
+.breadcrumb {
+	color: @cian;
+    font-size: 1rem;
+    &:last-child {
+		color: @cian;
+    }
+
+	i, [class^="mdi-"], [class*="mdi-"], i.material-icons {
+		display: inline-block;
+		float: left;
+		font-size: 24px;
+	}
+	a {
+		color: @cian;
+		&:last-child {
+			color: @cian;
+		}
+	}
+	&:before {
+		color: @cian;
+		content: '\e82e';
+		display: inline-block;
+		font-family: 'newsmaker';
+		font-style: normal;
+	    font-size: 1rem;
+	    margin: 0 10px;
+		-webkit-font-smoothing: antialiased;
+	}
+	&:first-child:before {
+		display: none;
+	}
+}

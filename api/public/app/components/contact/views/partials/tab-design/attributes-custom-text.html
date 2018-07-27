@@ -1,0 +1,119 @@
+<div data-ng-if="editionTabs.currentFieldSelected.EditClass === 'form-custom-text'">
+
+    
+    <div class="row">
+        <div class="collapsible-header blue-text"></i>{{'Valores'}}</div>
+        <div class="col s12 m12" data-ng-class="{'has-error' : false}">
+            <div input-field>
+                <label for="formTitle">{{'Texto del bloque:'}}</label>
+                <textarea   data-ng-model="editionTabs.currentFieldSelected.Text"
+                            data-required id="formTitle"
+                            class="materialize-textarea" length="500">
+                </textarea>
+            </div>
+        </div>
+    </div>
+    
+    
+    <!-- TIPOGRAFIA -->
+    <div class="row">
+        <div class="collapsible-header blue-text"></i>{{ 'Tipografia:' }}</div>
+        <div class="col s12 m8 l8">
+            <div input-field>
+                <div class="label">{{ 'Familia:' }}</div>
+                <select id="familia" class="validate"
+                        material-select watch
+                        data-ng-model="editionTabs.currentFieldSelected.style.fontSelected"
+                        ng-options="font.name for font in style.fontList track by font.value">
+                        <option ng-repeat="value in select.tipos">{{value}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="col s12 m4 l4">
+            <div class="font-weight-selector">
+                <div input-field>
+                    <div class="label">{{ 'Estilo:' }}</div>
+                    <select class="" 
+                            name='fontWeightSelected'
+                            material-select watch
+                            data-ng-model="editionTabs.currentFieldSelected.style.fontWeightSelected"
+                            ng-options="fontWeight.name for fontWeight in style.fontWeightList track by fontWeight.value" />
+                    </select>
+                </div>
+            </div>
+        </div>
+        <!-- Estilos -->
+        <div class="col s12">
+            <ul>
+                <li class="customvalue setsize">
+                    <div class="label">{{ 'Alineación' }}</div>
+                    <div class="content">
+                        <button class="waves-effect waves-light btn"
+                                data-ng-class="{'active':editionTabs.currentFieldSelected.style.textAlignSelected === 'left'}"
+                                data-ng-click="style.changeTextStyle.toggleAlign(editionTabs.currentFieldSelected,'left')">
+                                <i class="fa fa-align-left" aria-hidden="true"></i>
+                        </button>
+                        <button class="waves-effect waves-light btn"
+                                data-ng-class="{'active':editionTabs.currentFieldSelected.style.textAlignSelected === 'center'}"
+                                data-ng-click="style.changeTextStyle.toggleAlign(editionTabs.currentFieldSelected, 'center')">
+                                <i class="fa fa-align-center" aria-hidden="true"></i>
+                        </button>
+                        <button class="waves-effect waves-light btn"
+                                data-ng-class="{'active':editionTabs.currentFieldSelected.style.textAlignSelected === 'right'}"
+                                data-ng-click="style.changeTextStyle.toggleAlign(editionTabs.currentFieldSelected, 'right')">
+                                <i class="fa fa-align-right" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </li>
+                <li class="customvalue setsize">
+                    <div class="label">{{ 'Variables' }}</div>
+                    <div class="content">
+                        <button class="waves-effect waves-light btn"
+                                data-ng-class="{'active': editionTabs.currentFieldSelected.style.fontStyleSelected === 'italic'}"
+                                data-ng-click="style.changeTextStyle.toggleItalic(editionTabs.currentFieldSelected)">
+                                <i class="fa fa-italic" aria-hidden="true"></i>
+                        </button>
+                        <button class="waves-effect waves-light btn"
+                                data-ng-class="{'active': editionTabs.currentFieldSelected.style.textDecorationSelected === 'underline'}"
+                                data-ng-click="style.changeTextStyle.toggleUnderline(editionTabs.currentFieldSelected)">
+                                <i class="fa fa-underline" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <!-- Colores -->
+    <div class="row">
+        <div class="collapsible-header blue-text"></i>Colores</div>
+        <div class="col s12 m12" data-ng-class="{'has-error' : false}">
+            <ul>
+                <li class="customvalue colorpicker">
+                    <div class="label">Contenido</div>
+                    <div class="content font-style-selector-color">
+                        <input type="text" class="texto" minicolors data-ng-model="editionTabs.currentFieldSelected.style.fontColorSelected" />
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+    
+    <!-- cabecera font style -->
+    
+    <div class="row">
+        <div class="collapsible-header blue-text"></i>{{ 'Tamaños' }}</div>
+        <div class="col s12 m12" data-ng-class="{'has-error' : false}">
+            <ul>
+                <li class="customvalue setsize">
+                    <div class="label">{{ 'Tamaño del texto' }}</div>
+                    <div class="content">
+                        <ui-value-spinner data-ng-model="editionTabs.currentFieldSelected.style.fontSizeSelected"></ui-value-spinner>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+</div>

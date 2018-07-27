@@ -1,0 +1,174 @@
+nav  {
+	padding-top: @paddingHeight;
+	height: @navHeight + @paddingHeight;
+	z-index: 9999;
+	.nav-wrapper i, a, a i {
+		height: @navHeight;
+		line-height: @navHeight;
+	}
+
+	h1 span.logo-text{
+		display: none;
+	}
+
+	.c100 {
+		font-size: 30px;
+		margin-top: 23px;
+	}
+        
+        ul a {
+            color: #333;
+            font-weight: 500;
+            min-width: @navHeight;
+            &:hover {
+                background: lighten(@cian, 35%);
+            }
+            &.active {
+                background: lighten(@cian, 32%);
+            }
+        }
+        
+	@media (max-width: 992px) {
+		height: auto;
+		li.logo-nm {
+			width: 100vw;
+			height: @navHeight;
+			border-bottom: 1px solid #ddd;
+		}
+		 ul.right, .nav-wrapper i, a.button-collapse, a.button-collapse i {
+			line-height: @navHeightPlus;
+		}
+		a {
+			height: @navHeightPlus;
+			line-height: @navHeightPlus;
+		}
+		.sidebar-collapse {
+			top: @navHeight;
+		}
+	}
+
+	h1.logo-wrapper {
+		margin: 0px 0px;
+		line-height: 1rem;
+		a {
+			padding: 0;
+		}
+	}
+	li.logo-nm:hover {
+		background: transparent;
+	}
+        ul {
+            &.right {
+                    height: @navHeight;
+            }
+            &.dropdown-content {
+                    top: @navHeight !important;
+
+                    @media (max-width: 992px) {
+                            top: @navHeight + @navHeightPlus !important;
+                    }
+
+                    li {
+                            min-height: 0;
+                            border-bottom: 1px solid #ccc; 
+                            padding: 1rem;
+                            line-height: initial;
+                            cursor: inherit;
+                            &:last-child {
+                                    border-bottom: none;
+                            }
+                            &:hover {
+                                    background-color: transparent;
+                            }
+                    }
+
+                font-size: .85rem;
+                &#dropUser {
+                    width: 500px !important;
+                    right: 0 !important;
+                    position: fixed !important;
+                    @media (max-width: 500px) {
+                        width: 100% !important;
+                        left: 0 !important;
+                    }
+                    max-width: 500px;
+                    li {
+                        text-align: center;
+                        padding: 0;
+                    }
+                    a {
+                        color: @cian;
+                        font-weight: 400;
+                        display: inline-block;
+                        padding: 1rem;
+                        line-height: 1rem;
+                        height: auto;
+                        width: 100%;
+                        &:hover {
+                            background-color: @cian;
+                            color: white;
+                        }
+                        &.medio {
+                            width: 50%;
+                            &:nth-child(odd) {
+                                    border-right: 1px solid #ccc; 
+                            }
+                        }
+                    }
+                }
+                &#dropPlan {
+                    width: 500px !important;
+                    right: 0 !important;
+                    position: fixed !important;
+                    @media (max-width: 500px) {
+                            width: 100% !important;
+                    left: 0 !important;
+                    }
+                }
+
+                li {
+                    h3 {
+                        font-size: 1rem;
+                        font-weight: bold;
+                        margin: 0;
+                    }
+                    .c100 {
+                        font-size: 50px;
+                        margin-top: -5px;
+                        > span {
+                            width: 50px;
+                            line-height: 50px;
+                            font-size: 14px;
+                        }
+                    }
+                }
+            }
+        }
+
+        
+}
+
+.navbar-fixed {
+	height: @navHeight + @paddingHeight;
+}
+
+.dropdown-content li>a, .dropdown-content li>span {
+    font-size: inherit;
+    color: @cian;
+    display: inline;
+    line-height: inherit;
+    padding: inherit;
+}
+
+ul.submenu {
+    a {
+        
+        &.active {
+            font-weight: bold;
+            color: @azul;
+        }
+    }
+    a:hover {
+        color: @azul;
+    }    
+}

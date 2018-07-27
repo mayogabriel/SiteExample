@@ -1,0 +1,34 @@
+<div class="form-subscription-drop"
+     data-ng-class="{hover : $hover}"
+     data-ui-onhover="formEditionActions.hover($dragModel,$index);"
+     data-ui-drop="formEditionActions.onDrop($dragModel,$index);">
+    <div class="drop-area"></div>
+    <div class="form-subscription-drop-arrow arrow-left"></div>
+    <div class="form-subscription-drop-arrow arrow-right"></div>
+</div>
+
+<customfield-edit-frame data-customfield-model="customfield"
+                        click-action="formEditionActions.editField(customfield)"
+                        mouse-enter-action="formEditionActions.mouseEnterField()"
+                        mouse-leave-action="formEditionActions.mouseLeaveField()"
+                        trash-button-action="formEditionActions.removeField(customfield)"
+                        enabled="enableCustomfieldEditFrame">
+    <!--- Radio ---->
+    <div data-ng-if="customfield.RenderType === 'radio'">
+        <label data-ng-style="style.label.cssGetter(style)">{{customfield.Label}}</label>
+        <label class="radio-form-es" data-ng-repeat="value in customfield.value" data-ng-style="style.radioCheckbox.labelCssGetter(style)">
+            <input type="radio" name="{{customfield.name}}" data-ng-checked='value.defaultValue'/>
+            <div class="" data-ng-style="style.radioCheckbox.inputCssGetter(style)"></div>
+            <span>{{value.value}}</span>
+        </label>
+    </div>
+    <!--- Drop ---->
+    <div data-ng-if="customfield.RenderType === 'drop'">
+        <label for="customfield{{customfield.id}}"  data-ng-style="style.label.cssGetter(style)">{{customfield.Label}}</label>
+        <select id="customfield{{customfield.id}}"  data-ng-style="style.select.cssGetter(style)">
+            <option data-ng-repeat="value in customfield.value">{{value.value}}</option>
+        </select>
+    </div>
+
+</customfield-edit-frame>
+

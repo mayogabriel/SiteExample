@@ -1,0 +1,233 @@
+<header-component title="Mis Datos"></header-component>
+
+<div class="card-panel" >
+
+
+    <!--<div class="row nmtabs">
+        <div class="col s12">
+            <ul tabs reload="allTabContentLoaded">
+                <li class="col s12" ><a class="active" href="#generales">Datos generales</a></li>
+                <!--<li class="tab col s6"><a href="#cuota">Modificar cuota</a></li>
+            </ul>
+        </div>
+    </div>-->
+
+    <div class="row">
+        <div id="generales" class="col s12 int-tab">
+            <form name="formCtrl.userForm">
+                <ul class="collapsible popout" data-collapsible="accordion" watch >
+                    <li class="z-depth-0">
+                        <div class="collapsible-header"data-ng-class="{ 'active' : formCtrl.collapsibleClass,  
+                                                                         'hasErrorContainer' :  formCtrl.userForm.lastname.$invalid || formCtrl.userForm.firstname.$invalid ||
+                                                                                                formCtrl.userForm.email.$invalid || formCtrl.userForm.password.$invalid || formCtrl.userForm.status.$invalid}"><i class=""></i>Datos cuenta</div>
+                        <div class="collapsible-body fade">
+                            <div class="row">
+                                <div class="input-field col s12 m6" data-ng-class="{'hasError' : formCtrl.userForm.lastname.$invalid}">
+                                    <i class="icon-usuario prefix"></i>
+                                    <input id="lastname" name="lastname" type="text" class="validate" required="" data-ng-model="formCtrl.user.lastname">
+                                    <label for="lastname" data-ng-show="formCtrl.userForm.lastname.$valid">Apellido</label>
+                                    <label for="lastname" class="msgError" data-ng-show="formCtrl.userForm.lastname.$error.required">Apellido es requerido.</label>
+                                </div>
+                                <div class="input-field col s12 m6" data-ng-class="{'hasError' : formCtrl.userForm.firstname.$invalid}">
+                                    <i class="icon-usuario prefix"></i>
+                                    <input id="firstname" name="firstname" type="text" class="validate"  data-ng-model="formCtrl.user.firstname">
+                                    <label for="firstname">Nombre *</label>
+                                    <label for="firstname" class="msgError" data-ng-show="formCtrl.userForm.firstname.$error.required">Nombre es requerido.</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12 m4" data-ng-class="{'hasError' : formCtrl.userForm.email.$invalid}">
+                                        <i class="icon-mail prefix"></i>
+                                        <input id="email" type="email" name="email" class="validate" data-ng-model="formCtrl.user.email" required="">
+                                        <label for="email">Email *</label>
+                                        <label for="email" class="msgError" data-ng-show="formCtrl.userForm.email.$error.required">Email es requerido.</label>
+                                        <label for="email" class="msgError" data-ng-show="formCtrl.userForm.email.$error.email">Email inválido.</label>
+                                </div>
+                                <div class="input-field col s12 m4" data-ng-class="{'hasError' : formCtrl.userForm.password.$invalid}">
+                                        <i class="icon-mail prefix"></i>
+                                        <input id="password" type="password" class="validate" 
+                                               data-ng-minlength="8" ng-required="formCtrl.user.id === ''"
+                                               data-ng-model="formCtrl.user.password" >
+                                        <label for="password">Password *</label>
+                                        <label for="password" class="msgError" data-ng-show="formCtrl.userForm.password.$error.required">Password Requerido.</label>
+                                        <label for="password" class="msgError" data-ng-show="formCtrl.userForm.password.$error.minlength">Password Demasiado Corto.</label>
+                                </div>
+                                <div class="input-field col s12 m4">
+                                    <i class="icon-acciones prefix"></i>
+                                    <label class="active">{{ 'Estado' }} *</label>
+                                    <select id="Status" class="validate" placeholder="Status" data-ng-model="formCtrl.user.status" material-select watch required="">
+                                        <option value="1">Activo</option>
+                                        <option value="0">Inactivo</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="z-depth-0">
+                        <div class="collapsible-header" data-ng-class="{'hasErrorContainer' : formCtrl.userForm.language.$invalid || formCtrl.user.language_id < 1 ||
+                                                                                              formCtrl.userForm.country.$invalid || formCtrl.userForm.timezone.$invalid || formCtrl.userForm.country.$invalid}"><i class=""></i>Opciones regionales</div>
+                        <div class="collapsible-body">
+                            <div class="row">
+                                <div class="input-field col s12 m4" class="validate">
+                                    <span class="icon-down caret"></span>
+                                    <label class="active">{{ 'Idioma' }} *</label>
+                                    <select id="lang_id" ng-model="formCtrl.user.language_id" material-select watch required="" ng-options="language.id as language.name for language in formCtrl.languages"></select>                                            
+                                </div>
+                                <div class="input-field col s12 m4" class="validate">
+                                    <i class="icon-pais prefix"></i>
+                                    <label class="active">{{ 'País' }} *</label>
+                                    <country-timezone-picker-countries country-model="formCtrl.user.country" class="form-control" material-select></country-timezone-picker-countries>
+                                </div>
+                                <div class="input-field col s12 m4" class="validate">
+                                    <i class="icon-fecha prefix"></i>
+                                    <label class="active">{{ 'Zona Horaria' }} *</label>
+                                    <country-timezone-picker-timezone country-model="formCtrl.user.country" timezone-model="formCtrl.user.timezone"></country-timezone-picker-timezone>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="z-depth-0">
+                        <div class="collapsible-header"  data-ng-class="{'hasErrorContainer' : formCtrl.userForm.gender.$invalid}"><i class=""></i>Datos usuario</div>
+                        <div class="collapsible-body">
+                            <div class="row">
+                                <div class="input-field col s12 m6" class="validate">
+                                    <i class="icon-fecha prefix"></i>
+                                    <input id="birthday" 
+                                           type="text" 
+                                           class="datepicker" 
+                                           input-date
+                                           container="body"
+                                           format="yyyy-mm-dd"
+                                           min="{{ formCtrl.minDate }}"
+                                           max="{{ formCtrl.maxDate }}"
+                                           select-years="formCtrl.years"
+                                           ng-model="formCtrl.user.birthday">
+                                    <label for="birthday">Nacimiento</label>
+                                </div>
+                                <div class="input-field col s12 m6" data-ng-class="{'hasError' : formCtrl.userForm.gender.$invalid}">
+                                    <i class="icon-usuario prefix"></i>
+                                    <label class="active">{{ 'Género' }} *</label>
+                                    <select id="gender" class="validate" name="gender" material-select watch required="" ng-model="formCtrl.user.gender">
+                                        <option value="M">Masculino</option>
+                                        <option value="F">Femenino</option>
+                                        <option value="O">Otro</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12 m6">
+                                    <i class="icon-lugar prefix"></i>
+                                    <input id="address" type="text" class="validate" ng-model="formCtrl.user.address">
+                                    <label for="address">Direcci&oacute;n</label>
+                                </div>
+                                <div class="input-field col s12 m6">
+                                    <i class="icon-zipcode prefix"></i>
+                                    <input id="zip-code" type="text" class="validate" ng-model="formCtrl.user.zip_code">
+                                    <label for="zip-code">C&oacute;digo postal</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12 m6">
+                                    <i class="icon-telefono prefix"></i>
+                                    <input id="phone" type="text" class="validate"  ng-model="formCtrl.user.phone">
+                                    <label for="phone">Tel&eacute;fono</label>
+                                </div>
+                                <div class="input-field col s12 m6">
+                                    <i class="icon-celular prefix"></i>
+                                    <input id="cellphone" type="text" class="validate" ng-model="formCtrl.user.cellphone">
+                                    <label for="cellphone">Celular</label>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                 <ul class="botonera">
+                    <li>
+                        <button  class="btn-floating blue" 
+                            tooltipped data-position="top" data-delay="50" data-tooltip="{{'button.save' | translate }}"
+                            ng-disabled="formCtrl.userForm.$invalid || formCtrl.deleteLoading || formCtrl.saveLoading"
+                            ng-click="formCtrl.save()"
+                            ng-class="{'disabled': formCtrl.userForm.$invalid || formCtrl.deleteLoading || formCtrl.saveLoading}">
+                                <i class="icon-guardar"></i>
+                                <span ng-if="formCtrl.saveLoading"><i class="fa fa-spin fa-spinner"></i></span>
+                                <span ng-if="!formCtrl.saveLoading"><i class="icon-guardar"></i></span>
+                        </button>
+                    </li>
+                </ul>
+            </form>
+        </div>
+        <!--<div id="cuota" class="col s12">
+            <form>
+                <ul class="collapsible popout" data-collapsible="accordion" watch>
+                    <li class="z-depth-0">
+                        <div class="collapsible-header active"><i class=""></i>Cambiar Abono</div>
+                        <div class="collapsible-body">
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input id="abono-actual" type="number" class="validate">
+                                    <label for="abono-actual">Abono actual</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id="editabono" type="number" class="validate">
+                                    <label for="editabono">Cambiar a</label>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="z-depth-0">
+                        <div class="collapsible-header active"><i class=""></i>Cambiar cr&eacute;dito</div>
+                        <div class="collapsible-body">
+                            <div class="card-panel">
+                                <div class="row">
+                                    <div class="input-field col s6">
+                                        <input id="credito-actual" type="number" class="validate">
+                                        <label for="credito-actual">Cr&eacute;dito actual</label>
+                                    </div>
+
+                                    <div class="input-field col s6">
+                                        <input id="editcredito" type="number" class="validate">
+                                        <label for="editcredito">Cambiar a</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="botonera">
+                    <li>
+                        <button  class="btn-floating orange" 
+                            tooltipped 
+                            data-position="top" data-delay="50" data-tooltip="{{ 'button.go_back' | translate }}"
+                            ng-click="$location.path('users')" >
+                            <i ng-if="!formCtrl.saveLoading" class="icon-cancelar"></i>
+                            <i ng-if="!formCtrl.saveLoading" class="icon-borrar"></i>
+                            <span ><i ng-if="!formCtrl.saveLoading" class="fa fa-save"></i></span>
+                        </button>
+                    </li>
+                    <li>
+                        <button  class="btn-floating blue lighten-2" 
+                            tooltipped 
+                            data-position="top" data-delay="50" data-tooltip="{{'button.save_exit' | translate }}"
+                            ng-disabled="formCtrl.userForm.$invalid || formCtrl.deleteLoading || formCtrl.saveLoading"
+                            ng-class="{'disabled': formCtrl.userForm.$invalid || formCtrl.deleteLoading || formCtrl.saveLoading}">
+                                <span ng-if="formCtrl.saveLoading"><i class="fa fa-spin fa-spinner"></i></span>
+                                <span ng-if="!formCtrl.saveLoading"><i class="icon-guardaryvolver"></i> </span>
+                        </button>
+                    </li>
+                    <li>
+                        <button  class="btn-floating blue" 
+                            tooltipped data-position="top" data-delay="50" data-tooltip="{{'button.save' | translate }}"
+                            ng-disabled="formCtrl.userForm.$invalid || formCtrl.deleteLoading || formCtrl.saveLoading"
+                            ng-click="formCtrl.save()"
+                            ng-class="{'disabled': formCtrl.userForm.$invalid || formCtrl.deleteLoading || formCtrl.saveLoading}">
+                                <i class="icon-guardar"></i>
+                                <span ng-if="formCtrl.saveLoading"><i class="fa fa-spin fa-spinner"></i></span>
+                                <span ng-if="!formCtrl.saveLoading"><i class="icon-guardar"></i></span>
+                        </button>
+                    </li>
+                </ul>
+            </form>
+        </div>-->
+    </div>
+</div>

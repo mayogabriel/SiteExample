@@ -1,0 +1,42 @@
+<div data-ng-show="loading" class="center-align">
+    <div class="preloader-wrapper big active">
+        <div class="spinner-layer spinner-blue-only">
+            <div class="circle-clipper left">
+                <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+                <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ul class="ui-list-picker-pills ui-pills" data-ng-if="!loading">
+    <li class="lista ui-pill" data-ng-repeat="item in selectedLists | limitTo : showLimit">
+        {{item.name}}
+        <a data-ng-click="removeList(item.id);"><i class="orange-text icon-cancelar"></i></a>
+    </li>
+    <!-- <li class="ui-pill" data-ng-repeat="item in selectedLists | limitTo : showLimit">
+        
+        <span data-qtip="{{item.name}}">{{item.name}}</span>
+        <a href="" data-ng-click="removeList(item.id);"><i class="medium material-icons">delete</i></a>
+    </li> -->
+
+    <li data-ng-if="selectedLists.length > showLimit" class='lista vermas'>
+        <a data-ng-click="showMore()" class='blue-text'>
+            <span >{{'Mostrar mas listas'}}</span>
+        </a>
+    </li>
+</ul>
+
+<br class="clearfix" data-ng-if="selectedLists.length" />
+
+<a  class="waves-effect waves-light btn blue-powersite white-text right" type="button"
+    data-ng-hide="loading"
+    data-ng-click="open($event); $event.stopPropagation();">
+        <i class="icon-asociar"></i>{{'Elegir listas'}} 
+        <b data-ng-if="selectedLists.length">({{selectedLists.length}})</b>
+</a>

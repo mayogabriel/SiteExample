@@ -1,0 +1,15 @@
+<!--<div class="btn-group" ng-if="totalPages">
+    <button type="button" class="btn btn-default btn-sm" ng-click="prev()" ng-disabled="cantPageBackward"><i
+            class="fa fa-chevron-left"></i>
+    </button>
+    <button type="button" class="btn btn-default btn-sm" ng-disabled="cantPageForward" ng-click="next()"><i
+            class="fa fa-chevron-right"></i>
+    </button>
+</div>-->
+<div class="right-align">
+    <ul class="pagination">
+        <li class="waves-effect" data-ng-class="{'disabled':cantPageBackward}"><a ng-click="cantPageBackward || prev(); $event.stopPropagation();"><i class="material-icons blue-text">chevron_left</i></a></li>
+        <!--<li>pag. 1</li>-->
+        <li class="waves-effect" data-ng-class="{'disabled':cantPageForward}"><a ng-click="cantPageForward || next(); $event.stopPropagation();"><i class="material-icons blue-text">chevron_right</i></a></li>
+    </ul>
+</div>

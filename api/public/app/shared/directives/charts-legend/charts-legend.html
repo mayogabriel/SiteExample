@@ -1,0 +1,13 @@
+<div class="chart-legend">
+    <ul class="line-legend">
+        <li ng-repeat="item in chartdata.data track by $index"
+            ng-click="show[$index] = !show[$index];"
+            style="cursor: pointer;">
+            <span  class="line-legend-icon" 
+                   ng-style="{ 'background' : ((show[$index] === true) ? chartdata.colors[$index] : 'silver')}" 
+                    title="Show/hide corresponding line on chart">
+            </span>
+            <span class="line-legend-text">{{ chartdata.series[$index] }}</span>
+        </li>
+    </ul>
+</div>

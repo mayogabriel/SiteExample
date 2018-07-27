@@ -1,0 +1,95 @@
+<!-- START MAIN -->
+<main id="main">    
+    <!-- START WRAPPER -->
+    <div class="wrapper">
+        <!-- START CONTENT -->
+        <section id="content">
+            <!--start container-->
+            <div class="container">
+                <div class="card-panel">
+                    <div class="row">
+                        <form name="registerCtrl.registerForm" method="post" ng-submit="registerCtrl.register()" novalidate>
+                            <div class="col s12 m6">
+                                <p><strong>Ingrese sus datos para crear su cuenta</strong></p>
+                                
+                                <div class="input-field">
+                                    <input id="name" type="text" 
+                                           class="validate" 
+                                           ng-model="registerCtrl.form.lastname" 
+                                           required=""
+                                           ng-class="{ 'has-error' : registerCtrl.registerForm.lastname.$error }">
+                                    <label for="name">Apellido</label>
+                                </div>
+                                
+                                <div class="input-field">
+                                    <input id="name" type="text" class="validate" ng-model="registerCtrl.form.firstname" required="">
+                                    <label for="name">Nombre</label>
+                                </div>
+                                
+                                <div class="input-field">
+                                    <input id="email" type="email" class="validate" ng-model="registerCtrl.form.email" required="">
+                                    <label for="email">Mail</label>
+                                </div>
+                                
+                                <div ng-messages="registerCtrl.registerForm.email.$error" 
+                                        ng-if="registerCtrl.form.email.$dirty">
+                                     <div ng-message="required">This field is required</div>
+                                     <div ng-message="minlength">Message must be over 100 characters</div>
+                                     <div ng-message="maxlength">Message must not exceed 1000 characters</div>
+                                </div>
+
+                                
+                                <div class="input-field">
+                                    <input id="password" type="password" class="validate" ng-model="registerCtrl.form.password" required="">
+                                    <label for="password">Contrase&ntilde;a</label>
+                                </div>
+                                <div class="row">
+                                    <div class="col l7">
+                                        <p>
+                                            <input type="checkbox" id="terminos" class="validate" ng-required="true" ng-model="registerCtrl.form.terminos" required="" />
+                                            <label for="terminos">Acepto los terminos y condiciones de uso</label>
+                                        </p>
+                                        <p>
+                                            <input type="checkbox" id="info" ng-model="registerCtrl.form.info_news" />
+                                            <label for="info">Quiero recibir información sobre Newsmaker</label>
+                                        </p>
+                                    </div>
+                                    <div class="col l5 right-align">
+                                        
+                                        <button type="submit" 
+                                                ng-disabled="registerCtrl.loading || registerCtrl.registerForm.$invalid" 
+                                                class="waves-effect waves-light btn orange"
+                                                ng-class="{'disabled': registerCtrl.loading || registerCtrl.registerForm.$invalid}">
+                                            <span ng-hide="registerCtrl.loading">
+                                                {{ 'auth.btn-register' | translate }}
+                                            </span>
+                                            <span ng-show="registerCtrl.loading">
+                                                <i class="fa fa-spinner fa-spin"></i>
+                                            </span> 
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col s12 m6">
+                                <div class="card-panel">
+                                    <p><i class="icon-campanas orange-text"></i><strong>Como hacer mi primer envío</strong></p>
+                                    <p>Newsmaker es muy fácil de utilizar
+                                    <br>Para guiarse en su primer envío le 
+                                    <p><i class="icon-preguntas orange-text"></i><strong>Dudas o consultas</strong></p>
+                                    <p>mail: <a href="#">info@powersite.com.ar</a>
+                                    <br>Tel: +54 (11) 4444 4444
+                                    <br>Chat online en nuestra <a href="#">web</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!--end container-->
+        </section>
+        <!-- END CONTENT -->
+    </div>
+    <!-- END WRAPPER -->
+</main>
+<!-- END MAIN -->

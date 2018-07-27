@@ -1,0 +1,22 @@
+<section class="content-header">
+    <h1>
+        {{ 'panel.dashboard' | translate }} RESELLER
+    </h1>
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+    <div class="box box-solid">
+        <div class="box-header">
+            <h3 class="box-title">Hello, {{ mainCtrl.me.getFullName() }}!</h3>
+        </div>
+        <div class="box-body">
+            <a class="btn btn-app" ui-sref="main.user-list" ng-if="mainCtrl.me.can('users.index')">
+                <i class="fa fa-user"></i> New User
+            </a>
+        </div>
+        <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+</section>

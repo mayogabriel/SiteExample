@@ -1,0 +1,70 @@
+<!-- START MAIN -->
+<main id="main">    
+    <!-- START WRAPPER -->
+    <div class="wrapper">
+        <!-- START CONTENT -->
+        <section id="content">
+            <!--start container-->
+            <div class="container">
+                <div class="card-panel login">
+                    <div class="row">
+                        <form name="loginCtrl.loginForm" method="post" ng-submit="loginCtrl.login()">
+                            <div class="col s12 m6">
+                                <div><img class="responsive-img" src="/assets/images/logo_inicio.png"></div>
+                            </div>
+                            <div class="col s12 m12" input-field>
+                                <input type="email"
+                                       class="validate" 
+                                       required
+                                       name="email"
+                                       ng-required="true"
+                                       ng-minlength="formCtrl.user.id === '' ? 8 : 0"
+                                       ng-model="loginCtrl.form.email" />
+                                <label for="email">Usuario</label>
+                                <span ng-show="loginCtrl.loginForm.$error.email.required">Email is required.</span>
+                                <span ng-show="loginCtrl.loginForm.$error.email.email">Invalid email address.</span>
+                            </div>
+                            <div class="col s12 m12"  input-field>
+                                <input type="password" class="validate" ng-model="loginCtrl.form.password" required="" />
+                                <label for="password">Contrase&ntilde;a</label>
+                            </div>
+                            <br>
+                            <p  class="right-align col s12 m12">
+                                <input type="checkbox" ng-model="loginCtrl.form.remember" id="remember-me">                         
+                                <label for="remember-me">Remember Me</label>
+                            </p>                                
+                            <p class="right-align col s12 m12">
+                                <a href="recuperar.html" class="btn celeste white-text">olvido su contrase&ntilde;a</a>
+                                <button type="submit" 
+                                        class="waves-effect btn azul white-text"
+                                        ng-disabled="loginCtrl.loading || loginCtrl.loginForm.$invalid" 
+                                        ng-class="{'disabled': loginCtrl.loading || loginCtrl.loginForm.$invalid}">
+                                        <span ng-hide="loginCtrl.loading">
+                                            {{ 'auth.login' | translate }}
+                                        </span>
+                                        <span ng-show="loginCtrl.loading">
+                                            <i class="fa fa-spinner fa-spin"></i>
+                                        </span> 
+                                </button>
+                            </p>
+                        </form>
+                    </div>
+                    <div class="col s12 m12 login-bottom">
+                        <h5><strong>&iquest;Todav&iacute;a no tienes tu cuenta?</strong></h5>
+                        <p>Cientos de clientes han desarrollado su negocio o emprendimiento usando Newsmaker</p>
+                        <p>Conozca la mejor herramienta de email marketing</p>
+                        <p><strong>Simple, efectiva, econ&oacute;mica.</strong></p>
+                        <p class="center-align">
+                            <button ui-sref="fullscreen.register" type="button" class="waves-effect waves-light btn-large orange">Registrarme ahora</button>
+                        </p>
+                        <p class="center-align">1.500 envíos gratis</p>
+                    </div>
+                </div>
+            </div>
+            <!--end container-->
+        </section>
+        <!-- END CONTENT -->
+    </div>
+    <!-- END WRAPPER -->
+</main>
+<!-- END MAIN -->

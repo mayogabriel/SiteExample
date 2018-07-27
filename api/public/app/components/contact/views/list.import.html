@@ -1,0 +1,36 @@
+<header-component title="Importar contactos"></header-component>
+<div class="card-panel">
+    <div class="row">
+        <div class="col s6 m5 l4 offset-m1 offset-l2 center-align">
+            <div class="int-izquierda import-option" data-ng-show="!Upload.isUploadInProgress()">                
+                <button class="waves-effect waves-light btn-large orange white-text"
+                        type="file" ngf-select="uploadFiles($file, $invalidFiles)"
+                        accept="txt/*" ngf-max-height="1000" ngf-max-size="3000MB">
+                    {{ ' Seleccionar archivo' }}
+                </button>
+                <br><br>
+                <div class="aclaracion">Cargue su base de datos desde un archivo (csv) y asignele una o mas listas</div>
+            </div>
+            <div class="upload-progress ng-binding ng-hide" data-ng-show="Upload.isUploadInProgress()">
+                File:
+                <div>
+                    {{f.name}} {{errFile.name}} 
+                    <div>{{f.progress}}%</div>
+                    <div class="progress" ng-show="f.progress >= 0">
+                        <div class="determinate" style="width: {{f.progress}}%"></div>
+                    </div>
+                    
+                    {{errFile.$error}} {{errFile.$errorParam}}
+                </div>
+                <ui-loader-wave data-text="" class="ng-isolate-scope"><div class="loader-rects"><div class="rect1"></div><div class="rect2"></div><div class="rect3"></div><div class="rect4"></div><div class="rect5"></div></div><div class="loader-text ng-binding" data-ng-bind="text"></div></ui-loader-wave>
+            </div>
+        </div>
+        <div class="col s6 m5 l4 center-align columna-derecha">
+            <a href="contactos-importar-set.html" class="waves-effect waves-light btn-large orange white-text"><i class="fa fa-files-o"></i> Copiar y pegar</a>
+            <br><br>
+            <div class="aclaracion">Copie y pegue el contenido de un archivo o escribalo manualmente en un formulario y asignele una o mas listas</div>
+        </div>
+        
+    </div>
+</div>
+

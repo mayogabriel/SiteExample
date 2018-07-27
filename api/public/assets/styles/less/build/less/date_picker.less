@@ -1,0 +1,28 @@
+.picker__date-display {
+	background-color: @cian;
+}
+.picker__weekday-display {
+	background-color: @azul;
+}
+.picker__day--selected, .picker__day--selected:hover, .picker--focused .picker__day--selected {
+	background-color: @cian;
+}
+.picker__day.picker__day--today {
+	color: @cian;
+}
+.picker__nav--prev:hover, .picker__nav--next:hover {
+	color: @cian;
+    background: transparent;
+    &:before {
+		color: @cian;
+    }
+}
+button.picker__today, button.picker__clear, button.picker__close {
+	color: @cian;
+	&:hover {
+		color: @azul;
+	}
+	&:focus {
+		background-color: transparent;
+	}
+}

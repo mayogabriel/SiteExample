@@ -1,0 +1,56 @@
+<div class="card-panel planes" data-ng-controller="AccountPlanController as accountPlanCtrl">
+    <span class="mail-dashboard"></span>
+    <!--<h1>Estado de mi cuenta</h1>-->
+    <span class="separador-dashboard"></span>
+    <div class="row">
+        <div class="col m6 s6">
+            <div class="center-align"></div>
+            <div class="row">
+                <div class="col m5 hide-on-small-only center-align chart">
+                    <label class="chart-title" style='font-size: 4rem;top: 48%;'>{{ accountPlanCtrl.quote.percentage }}</label>
+                    <canvas id="accountPlanQuote" 
+                            class="chart chart-doughnut" 
+                            chart-options="accountPlanCtrl.options" 
+                            chart-data="accountPlanCtrl.quote.data" 
+                            chart-labels="accountPlanCtrl.quote.labels"
+                            width="200">
+                    </canvas>
+                </div>
+                <div class="col m6 s12">
+                    <h2><strong>Abono</strong></h2>
+                    <p> 
+                        Disponible: <strong class="blue-text lighten-2">{{ accountPlanCtrl.quote.available }}</strong>
+                        <br>{{ "global.sends"|translate }} {{ "global.consumed"|translate }}: <strong class="blue-text lighten-2">{{ accountPlanCtrl.quote.consumed }}.</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col m6 s6">
+            <div class="col m6 s12 right-align">
+                <h2><strong>Creditos</strong></h2>
+                <p>Crédito disponible: <strong class="blue-text lighten-2">{{ accountPlanCtrl.credits.available }}</strong><br>
+                Crédito consumido: <strong class="blue-text lighten-2">{{ accountPlanCtrl.credits.consumed }}</strong>
+                </p>
+            </div>
+            <div class="row">
+                <div class="col m5 hide-on-small-only chart">
+                    <label class="chart-title" style='font-size: 4rem;top: 48%;'>{{ accountPlanCtrl.credits.percentage }}</label>
+                    <canvas id="accountPlanCredits" class="chart chart-doughnut"
+                            chart-data="accountPlanCtrl.credits.data"
+                            chart-labels="accountPlanCtrl.credits.labels" 
+                            chart-options="accountPlanCtrl.options"
+                            width="200">
+                    </canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12 blue-text lighten-2 center-align callaction">¿Te quedaste sin envíos?</div>
+        <div class="col s12 blue-text lighten-2 center-align">
+            <a href="plans/quote" class="btn-large blue lighten-2">{{ "Cambiar Plan"|translate }}</a>
+            <a href="plans/credits" class="btn-large blue lighten-2">{{ "Comprar Créditos"|translate }}</a>
+        </div>
+    </div>
+</div>

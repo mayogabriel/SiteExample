@@ -1,0 +1,60 @@
+<div class="card-panel header-content">
+    <div class="row">
+        <div class="col s12">
+            <span class="breadcrumb">Contactos</span>
+            <span  ng-if="formCtrl.list.id" class="breadcrumb">{{"Editar Lista"}}</span>
+            <span  ng-if="!formCtrl.list.id" class="breadcrumb">{{"Nueva Lista"}}</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 m6">
+            <h1 ng-if="formCtrl.list.id">{{ "Editar Lista"}}</h1>
+            <h1 ng-if="!formCtrl.list.id">{{ "Nueva Lista"}}</h1>
+        </div>
+        <div class="col s12 m6 header-button">
+            <div class="wrap-button">
+                <a data-ui-sref="main.contacts.lists-store" class="waves-effect waves-light btn orange white-text"><i class="icon-add-usuarios"></i>crear nueva lista</a>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div ng-include="getTemplateView('submenu', 'contact', 'partials/')"></div>
+</div>
+<div class="card-panel">
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <form name="formCtrl.listForm">
+                <div class="input-field col s12 m6" data-ng-class="{'hasError': formCtrl.listForm.name.$touched &amp;&amp; formCtrl.listForm.name.$invalid}">
+                    <input id="name" 
+                           type="text" 
+                           class="validate" 
+                           name="name" 
+                           required="" 
+                           data-ng-minlength="3" 
+                           ng-model="formCtrl.list.name">
+                    <label for="name" data-ng-if="formCtrl.listForm.name.$valid">Nombre</label>
+                    <label for="name" class="msgError active" data-ng-if="formCtrl.listForm.name.$error.minlength">Nombre Debe tener al menos 3 Caracteres</label>
+                    <label for="name" class="msgError" data-ng-if="formCtrl.listForm.name.$error.required">Nombre es requerido</label>
+                </div>
+                <br>
+                <button class="btn waves-effect waves-light azul" 
+                        type="submit" 
+                        ng-class="{'disabled': formCtrl.listForm.$invalid || formCtrl.saveLoading}"
+                        ng-disabled="formCtrl.listForm.$invalid || formCtrl.saveLoading"
+                        ng-click="formCtrl.save()" 
+                        name="action">
+                    <span ng-if="formCtrl.saveLoading"><i class="fa fa-spin fa-spinner"></i></span>
+                    <span ng-if="!formCtrl.saveLoading"><i class="icon-guardar"></i>Guardar</span>
+                </button>
+                <button class="btn waves-effect waves-light celeste" 
+                        type="button" 
+                        ng-disabled="formCtrl.saveLoading"
+                        ui-sref="main.contacts.lists-list" 
+                        name="action">
+                    <i class="icon-cancelar"></i>Cancelar
+                </button>
+            </form>
+        </div>
+    </section>
+</div>

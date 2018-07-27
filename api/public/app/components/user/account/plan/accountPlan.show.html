@@ -1,0 +1,58 @@
+<header-component title="Mi Plan"></header-component>
+
+<div class="card-panel">
+    <div class="row">
+        <div class="col s12">
+            <ul tabs reload="allTabContentLoaded" >
+                <li class="tab"><a class="active" href="#abono">{{'Cuota'|translate}}</a></li>
+                <li class="tab"><a href="#credito">{{"Creditos"|translate}}</a></li>
+            </ul>   
+        </div>
+    </div>
+    <div class="row">
+        <div class="row" id="abono">
+            <div class="col s6 m5 offset-m1 l4 offset-l2 center-align chart">
+                <div class='row'>
+                    <label class="chart-title">{{ accountPlanCtrl.quote.percentage }}</label>
+                    <canvas id="accountPlanQuote" 
+                            class="chart chart-doughnut" 
+                            chart-options="accountPlanCtrl.options"
+                            chart-data="accountPlanCtrl.quote.data" 
+                            chart-labels="accountPlanCtrl.quote.labels">
+                    </canvas> 
+                </div>
+            </div>
+            <div class="col s6 m5 offset-m1 l4 columna-derecha">
+                <p class="data-planes">Usted tiene una suscripción mensual de <span class="cantidad">{{accountPlanCtrl.quote.total}} {{ "envíos"|translate }}</span></p>
+                <ul>
+                    <li><span class="dot blue ligthen-2"></span> {{ "Envíos"|translate }} {{ "Disponibles"|translate }} <span>{{ accountPlanCtrl.quote.available }}</span></li>
+                    <li><span class="dot"></span> {{"global.sends"|translate}} {{ "global.consumed"|translate }} <span>{{ accountPlanCtrl.quote.consumed }}</span></li>
+                </ul>
+
+                <p class="blue-text lighten-2">&iquest;Necesitas m&aacute;s envios?</p>
+                <a class="btn blue lighten-2" href="plans/quote">{{ "Cambiar Plan"|translate }}</a>
+            </div>
+        </div>
+        <div class="row" id="credito">
+            <div class="col s6 m5 offset-m1 l4 offset-l2 center-align chart">
+                <label class="chart-title">{{ accountPlanCtrl.credits.percentage }}</label>
+                <canvas id="accountPlanCredits" 
+                        class="chart chart-doughnut"
+                        chart-data="accountPlanCtrl.credits.data" 
+                        chart-labels="accountPlanCtrl.credits.labels" 
+                        chart-options="accountPlanCtrl.options">
+                </canvas>
+            </div>
+            <div  class="col s6 m5 offset-m1 l4 columna-derecha">
+                 <p  class="data-planes">Usted tiene <span class="cantidad">{{accountPlanCtrl.credits.total}} {{"Créditos"|translate}}</span></p>
+                <ul>
+                    <li><span class="dot blue ligthen-2"></span> {{ "Envíos"|translate }} {{ "Disponibles"|translate }} <span>{{ accountPlanCtrl.credits.available }}</span></li>
+                    <li><span class="dot"></span> {{"Envíos"|translate}} {{ "global.consumed"|translate }} <span>{{ accountPlanCtrl.credits.consumed }}</span></li>
+                </ul>
+
+                <p class="blue-text lighten-2">&iquest;Necesitas m&aacute;s creditos?</p>
+                <a class="btn blue lighten-2" href="plans/credits">{{ "Comprar Créditos"|translate }}</a>
+            </div>
+        </div>
+    </div>
+</div>

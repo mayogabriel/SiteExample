@@ -1,0 +1,156 @@
+/**
+ *  Do not remove this comments bellow. It's the markers used by wiredep to inject
+ *  less dependencies when defined in the bower.json of your dependencies
+ */
+// bower:less
+// endbower
+
+/**
+ *  If you want to override some bootstrap variables, you have to change values here.
+ *  The list of variables are listed here bower_components/bootstrap/less/variables.less
+ */
+
+@icon-font-path: "../assets/fonts/";
+@fa-font-path: "../assets/fonts/";
+
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+
+
+/*input.ng-invalid.ng-touched{
+  border-bottom: 1px solid #e74c3c !important; 
+}*/
+
+/**
+ *  Do not remove this comments bellow. It's the markers used by gulp-inject to inject
+ *  all your less files automatically
+ */
+// injector
+// endinjector
+
+
+body {
+    background-color: #f5f5f5 !important;
+}
+#content {
+    max-width: 1366px;
+    margin: 0 auto;
+}
+
+#content.dashboard .mail-dashboard:after {
+    content: '\e842';
+    font-family: 'newsmaker';
+    position: absolute;
+    background: #fff;
+    left: 50%;
+    margin-left: -6.5rem;
+    top: -2rem;
+    font-size: 13rem;
+    line-height: 7rem;
+    color: #999;
+}
+
+
+#content .header-content h1 {
+    font-size: 2rem;
+    margin: 0;
+    line-height: 2.5rem;
+
+}
+
+.navbar-fixed {
+    z-index: 999;
+}
+
+#content .card-panel.header-content {
+    /*padding: 1rem 3rem 0rem 2rem;*/
+}
+
+
+.chart-title  {
+    font-size: 3rem !important;
+}
+
+.collapsible, 
+.card-panel {
+    box-shadow: none;
+    /*border: 1px solid #d5d5d5;*/
+    border-radius: 4px;
+}
+
+.filtro *[input-field] input, .filtro .input-field input,
+.filtro *[input-field] .select-wrapper input.select-dropdown, 
+.filtro .input-field .select-wrapper input.select-dropdown {
+    background: #ffffff;
+    border: 1px solid #cccccc;
+}
+
+.filtro *[input-field] label, 
+.filtro .input-field label,
+.filtro *[input-field]  label {
+    z-index: 1;
+}
+
+
+nav .c100 {
+    font-size: 36px;
+    margin: 19px 0 0 5px;
+}
+nav .nav-wrapper i.icon-notificaci-on:before {
+    margin: 15px 15px 15px 0;
+}
+nav .nav-wrapper i.icon-notificaci-on {
+    width: 3rem;
+    color: #64a4d9;
+    font-size: 3rem;
+}
+#header nav ul a[data-activate="alert"] ,
+#header nav ul a[data-activate="dropPlan"] {
+    padding: 0;
+    width: 75px;
+}
+
+nav ul.dropdown-content {
+    top: 85px !important;
+}
+#content tr td,
+#content thead th {
+    text-align: left;
+}
+
+
+#content .collapsible-header.hasErrorContainer {
+    color: #d32f2f;
+}
+
+#content .collapsible-header.active.hasErrorContainer {
+    background: #d32f2f;
+    color: #FFF;
+}
+
+#content button.form-fixedfields-list-item, 
+#content button.form-customfields-list-item {
+    min-width: 210px;
+}
+
+.custom-form-nm #editar {
+    border-right: 1px solid #ddd;
+}
+
+.custom-form-nm .font-weight-selector {
+    width: 100%;
+}
+
+
+.breadcrumb {
+    cursor:pointer;
+}
+
+.breadcrumb.grey-text {
+    cursor: auto;
+}

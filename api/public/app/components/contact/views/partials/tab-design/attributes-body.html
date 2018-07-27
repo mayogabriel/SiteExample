@@ -1,0 +1,43 @@
+<!-- Cuerpo -->
+<div data-ng-if="editionTabs.currentFieldSelected.EditClass === 'form-body'">
+    <div class="row">
+        <div class="collapsible-header blue-text"></i>{{ 'Tamaños' }}</div>
+        <div class="col s12 m12" data-ng-class="{'has-error' : false}">
+            <ul>
+                <li class="customvalue setsize">
+                    <div class="label">{{'Espesor de borde'}} (px)</div>
+                    <div class="content">
+                        <ui-value-spinner data-ng-model="style.container.borderWidthSelected"></ui-value-spinner>
+                    </div>
+                </li>
+                <li class="customvalue setsize">
+                    <div class="label">{{'Redondeo de borde'}} (px)</div>
+                    <div class="content">
+                        <ui-value-spinner data-ng-model="style.container.borderRadiusSelected"></ui-value-spinner>
+                    </div>
+                </li>                
+            </ul>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="collapsible-header blue-text"></i>Colores</div>
+        <div class="col s12 m12" data-ng-class="{'has-error' : false}">
+            <ul>
+                <li class="customvalue colorpicker">
+                    <div class="label">Borde</div>
+                    <div class="content">
+                        <input class="texto" type="text" minicolors data-ng-model="style.container.borderColorSelected"/>
+                    </div>
+                </li>
+                <li class="customvalue colorpicker">
+                    <div class="label">Fondo</div>
+                    <div class="content">
+                        <input type="text" class="texto"  minicolors data-ng-model="style.container.backgroundColorSelected"/>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+</div>

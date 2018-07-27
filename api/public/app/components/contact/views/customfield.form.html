@@ -1,0 +1,172 @@
+
+<div class="card-panel header-content">
+
+    <div class="row">
+        <div class="col s12">
+            <span class="breadcrumb" data-ui-sref='main'>{{'Campos Personalizados'}}</span>
+            <span class="breadcrumb" ng-if="!formCtrl.customField.id"> {{ 'Nuevo' | translate }}</span>
+            <span class="breadcrumb" ng-if="formCtrl.customField.id"> {{ 'Editar' | translate }}</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 m6">
+            <h1 ng-if="!formCtrl.customField.id"> {{ 'Nuevo Campo Personalizado' | translate }}</h1>
+            <h1 ng-if="formCtrl.customField.id"> {{ 'Editar Campo Personalizado' | translate }}</h1>
+        </div>
+    </div>
+    <hr>
+    <div ng-include="getTemplateView('submenu', 'contact', 'partials/')"></div>
+</div>
+<div class="card-panel">
+    
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col s12 m10 l8 offset-m1 offset-l2">
+                <div class="box box-solid">              
+                    <form name="formCtrl.CustomFieldForm">
+                        <div class="input-field">
+                            <input id="name" 
+                                   type="text" 
+                                   class="validate" 
+                                   name="" 
+                                   required="" 
+                                   ng-model="formCtrl.customField.name">
+                            <label for="name">Nombre</label>
+                        </div>
+                        
+                        <div class="input-field">
+                            <select id='field_type' 
+                                    material-select watch 
+                                    required=""
+                                    ng-model="formCtrl.customField.field_type" 
+                                    ng-change="formCtrl.FieldTypeDropdown()"
+                                    ng-options="FieldTypeItems.value as (FieldTypeItems.text) for FieldTypeItems in formCtrl.FieldTypeItems">
+                                    <option value="">--Seleccione una opcion--</option>
+                            </select>
+                            <!--<label style="top:-14px; left: 0" for="field_type">Tipo de Campos</label>-->
+                        </div>
+                        <div class="input-field" ng-show="!formCtrl.showList">
+                            <input id="DefaultValue" 
+                                   type="text" 
+                                   class="validation" 
+                                   name="DefaultValue"
+                                   data-ng-required="formCtrl.customField.field_type === 'hidden_field'"
+                                   data-ng-model="formCtrl.customField.default_value">
+                            <label for="DefaultValue">Valor por Defecto</label>
+                        </div>
+
+                        <div class="input-field" ng-show="formCtrl.showValidationField">
+                            <select ng-model="formCtrl.customField.validation"
+                                    id="validation"
+                                    material-select watch>
+                                    <option ng-value="ValidationItems.value"
+                                            ng-selected="ValidationItems.value == formCtrl.customField.validation"
+                                            ng-repeat="ValidationItems in formCtrl.ValidationItems" >{{ValidationItems.text}}</option>
+                            </select>
+                            <!--<label style="top:-14px; " for="validation">Validación</label>-->
+                        </div>
+                        
+                        
+                        <div class="input-field" ng-if="formCtrl.customField.validation === 'custom' && formCtrl.showValidationField">
+                            <input id="validation_custom_regex" 
+                                   type="text" 
+                                   class="validation" 
+                                   name="validation_custom_regex"
+                                   ng-required="formCtrl.customField.validation === 'custom'"
+                                   ng-model="formCtrl.customField.validation_custom_regex" >
+                            <label for="validation_custom_regex">Validación Personalizada</label>
+                        </div>
+                        
+                        <div ng-if="formCtrl.showList">
+                            <h3>Opciones</h3>
+                            
+                            <p ng-show="formCtrl.ListValuesItems.ValuesItems < 1">
+                                    El listado de opciones se encuentra vacío 
+                                    Puedes agregar una nueva opción desde el formulario a la izquierda.
+                                
+                            </p>
+                            
+                            <div class="input-field " ng-repeat="valueItem in formCtrl.ListValuesItems.ValuesItems track by $index">
+                                <div class="row">
+                                   <div class="col s10">
+
+                                            <input  type="text" 
+                                                    class="validation" 
+                                                    name="valueItem"
+                                                    id="valueItem-{{$index}}"
+                                                    ng-model="valueItem.value">
+                                            <label for="valueItem-{{$index}}">Ingrese un Valor</label>
+                                    </div>
+                                    <div class="col s1 right-align">
+                                        <input  type="checkbox" 
+                                                class="validation" 
+                                                name="defaultValueItem"
+                                                id="defaultValueItem-{{$index}}" 
+                                                data-ng-model="valueItem.defaultValue"
+                                                data-ng-if='formCtrl.customField.field_type === "check_box"'/>
+
+                                        <input  type="radio" 
+                                                id="defaultValueItem-{{$index}}"
+                                                class="validation" 
+                                                name="defaultValueItem" 
+                                                data-ng-change='formCtrl.ListValuesItems.setRadioValue($index)'
+                                                data-ng-value="true"
+                                                ng-model="valueItem.defaultValue"
+                                                ng-if='formCtrl.customField.field_type === "radio_button"'/>
+
+                                        <label  for="defaultValueItem-{{$index}}" 
+                                                tooltipped
+                                                data-position="top" 
+                                                data-delay="50" 
+                                                data-tooltip="Valor Por Defecto"></label>
+                                    </div>
+
+                                    <div class="col s1 right-align">
+                                        <a  ng-click="formCtrl.ListValuesItems.removeValue(valueItem)"
+                                            tooltipped data-position="top" 
+                                            data-delay="50" data-tooltip="Eliminar">
+                                            <i class="icon-borrar orange-text"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <a  class="btn waves-effect waves-light  blue" 
+                                ng-click="formCtrl.ListValuesItems.addValue()">
+                                Agregar Valor
+                            </a>
+                            <br><br>
+                            
+                            
+                        </div>
+                        
+                        <div class='right-align'>
+                            <br><br>
+                            <a  class="btn waves-effect waves-light azul" 
+                                ng-class="{'disabled': formCtrl.CustomFieldForm.$invalid || formCtrl.saveLoading}"
+                                ng-disabled="formCtrl.CustomFieldForm.$invalid || formCtrl.saveLoading"
+                                ng-click="formCtrl.save()"
+                                name="action">Guardar
+                                <span ng-show="formCtrl.saveLoading"><i class="fa fa-spin fa-spinner"></i></span>
+                                <span ng-show="!formCtrl.saveLoading"><i class="icon-guardar"></i> </span>
+                            </a>  
+
+                            <a  class="btn waves-effect waves-light celeste" 
+                                type="button" 
+                                ng-disabled="formCtrl.saveLoading"
+                                ui-sref="main.contacts.customfield-list" 
+                                name="action">
+                                Volver
+                                <i class="icon-cancelar"></i>
+                            </a>
+                        </div>
+                        
+                    </form>
+                </div>
+                <!-- /.box -->
+            </div>
+            <!-- ./col -->
+        </div>
+    </section>
+</div>

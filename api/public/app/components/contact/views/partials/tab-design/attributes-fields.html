@@ -1,0 +1,203 @@
+<div data-ng-if="editionTabs.currentFieldSelected.EditClass === 'form-fields'">
+    <!-- VALORES  -->
+    <div class="row">
+        <div class="collapsible-header blue-text"></i>Valores</div>
+        <div class="col s12 m12" data-ng-class="{'has-error' : false}">
+            <div data-ng-if="editionTabs.currentFieldSelected.RenderLikeTextarea !== true">
+                <div input-field>
+                    <input  id="formTitle" type="text" length="60"
+                            data-ng-model="editionTabs.currentFieldSelected.Label"
+                            data-required/>
+                    <label for="formTitle">{{'Etiqueta de texto:'}}</label>
+                </div>
+            </div>
+            <div data-ng-if="editionTabs.currentFieldSelected.RenderLikeTextarea">
+                <div input-field>
+                    <label for="formTitle">{{'Texto del bloque:'}}</label>
+                    <textarea   data-ng-model="editionTabs.currentFieldSelected.Label"
+                                data-required id="formTitle"
+                                class="materialize-textarea" length="150">
+                    </textarea>
+               </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- TIPOGRAFIA -->
+    <div class="row">
+        <div class="collapsible-header blue-text"></i>{{ 'Tipografia:' }}</div>
+        <div class="col s12 m8 l8">
+            <div input-field>
+                <div class="label">{{ 'Familia:' }}</div>
+                <select id="familia" class="validate"
+                        material-select watch
+                        data-ng-model="style.input.fontSelected" 
+                        ng-options="font.name for font in style.fontList track by font.value">
+                        <option ng-repeat="value in select.tipos">{{value}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="col s12 m4 l4">
+            <div class="font-weight-selector">
+                <div input-field>
+                    <div class="label">{{ 'Estilo:' }}</div>
+                    <select class="" 
+                            name='fontWeightSelected'
+                            material-select watch
+                            data-ng-model="style.input.fontWeightSelected"
+                            ng-options="fontWeight.name for fontWeight in style.fontWeightList track by fontWeight.value" />
+                    </select>
+                </div>
+            </div>
+        </div>
+        <!-- Estilos -->
+        <div class="col s12">
+            <ul>
+                <li class="customvalue setsize">
+                    <div class="label">{{ 'Variables' }}</div>
+                    <div class="content">
+                        <button class="waves-effect waves-light btn"
+                                data-ng-class="{'active':style.input.fontStyleSelected === 'italic'}"
+                                data-ng-click="style.changeTextStyle.toggleItalic('input', style)">
+                                <i class="fa fa-italic" aria-hidden="true"></i>
+                        </button>
+                        <button class="waves-effect waves-light btn"
+                                data-ng-class="{'active':style.input.textDecorationSelected === 'underline'}"
+                                data-ng-click="style.changeTextStyle.toggleUnderline('input', style)">
+                                <i class="fa fa-underline" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </li>
+                <li class="customvalue setsize">
+                    <div class="label">{{ 'Alineación' }}</div>
+                    <div class="content">
+                        <button class="waves-effect waves-light btn"
+                                data-ng-class="{'active':style.input.textAlignSelected === 'left'}"
+                                data-ng-click="style.changeTextStyle.toggleAlign('input', 'left', style)">
+                                <i class="fa fa-align-left" aria-hidden="true"></i>
+                        </button>
+                        <button class="waves-effect waves-light btn"
+                                data-ng-class="{'active':style.input.textAlignSelected === 'center'}"
+                                data-ng-click="style.changeTextStyle.toggleAlign('input', 'center', style)">
+                                <i class="fa fa-align-center" aria-hidden="true"></i>
+                        </button>
+                        <button class="waves-effect waves-light btn"
+                                data-ng-class="{'active':style.input.textAlignSelected === 'right'}"
+                                data-ng-click="style.changeTextStyle.toggleAlign('input', 'right', style)">
+                                <i class="fa fa-align-right" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+    <!-- Colors -->
+    <div class="row">
+        <div class="collapsible-header blue-text"></i>Colores</div>
+        <div class="col s12 m12" data-ng-class="{'has-error' : false}">
+            <ul>
+                <li class="customvalue colorpicker">
+                    <div class="label">Contenido</div>
+                    <div class="content font-style-selector-color">
+                        <div data-ng-if="editionTabs.editFontColor === 'input'">
+                            <input type="text" name='' class="texto" minicolors data-ng-model="style.input.fontColorSelected" />
+                        </div>
+                        <div data-ng-if="editionTabs.editFontColor === 'radioCheckbox'">
+                            <input type="text" class="texto" minicolors data-ng-model="style.radioCheckbox.fontColorSelected" />
+                        </div>
+                    </div>
+                </li>
+                <li class="customvalue colorpicker">
+                    <div class="label">Borde</div>
+                    <div class="content">
+                        <input class="texto" type="text" minicolors data-ng-model="style.input.borderColorSelected"/>
+                    </div>
+                </li>
+                <li class="customvalue colorpicker">
+                    <div class="label">Fondo</div>
+                    <div class="content">
+                        <input type="text" class="texto"  minicolors data-ng-model="style.input.backgroundColorSelected"/>
+                    </div>
+                </li>
+                <li class="customvalue colorpicker" data-ng-if="editionTabs.currentFieldSelected.field_type !== 'email'">
+                    <div class="label">Etiqueta</div>
+                    <div class="content">
+                         <input type="text" class="texto" minicolors data-ng-model="style.label.fontColorSelected"/>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+    
+    <!-- cabecera font tamaño -->
+    
+    <div class="row">
+        <div class="collapsible-header blue-text"></i>{{ 'Tamaños' }}</div>
+        <div class="col s12 m12" data-ng-class="{'has-error' : false}">
+            <ul>
+                <li class="customvalue setsize">
+                    <div class="label">Texto (px)</div>
+                    <div class="content">
+                        <ui-value-spinner data-ng-model="style.input.fontSizeSelected" disabled="false"></ui-value-spinner>
+                    </div>
+                </li>
+                <li class="customvalue setsize">
+                    <div class="label">Alto del campo (px)</div>
+                    <div class="content">
+                        <ui-value-spinner data-ng-model="style.input.heightSelected"></ui-value-spinner>
+                    </div>
+                </li>
+                <li class="customvalue setsize">
+                    <div class="label">Espesor del borde (px)</div>
+                    <div class="content">
+                        <ui-value-spinner data-ng-model="style.input.borderWidthSelected"></ui-value-spinner>
+                    </div>
+                </li>
+                <li class="customvalue setsize">
+                    <div class="label">Redondeo del borde (px)</div>
+                    <div class="content">
+                        <ui-value-spinner data-ng-model="style.input.borderRadiusSelected"></ui-value-spinner>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- borde  inputs  -->
+    <!--<div class="row field-margin" data-ng-if="editionTabs.currentFieldSelected.field_type !== 'email'">
+        <div class="col-md-12 col s12">
+            <ui-checkbox data-ng-model="editionTabs.currentFieldSelected.Required"> </ui-checkbox>
+            <strong data-ng-class="{active : editionTabs.currentFieldSelected.Required}">{{'Campo obligatorio'}}</strong>
+        </div>
+        <div class="clear"></div>
+    </div>-->
+
+    <!--<div class="row field-margin" data-ng-if="editionTabs.dropFieldChangeRender">
+        <div class="col-md-12 col s12">
+            <ui-switch data-ng-model="editionTabs.currentFieldSelected.RenderLikeRadio" on-label="{{'Botón radial'}}" off-label="{{'Desplegable'}}"></ui-switch>
+        </div>
+        <div class="clear"></div>
+    </div>-->
+
+    <!--<div class="row field-margin" data-ng-if="editionTabs.textFieldChangeRender">
+        <div class="col-md-12 col s12">
+            <ui-switch class="render-textarea" data-ng-model="editionTabs.currentFieldSelected.RenderLikeTextarea" on-label="{{'Múltiples líneas'}}" off-label="{{'Única línea'}}"></ui-switch>
+        </div>
+        <div class="clear"></div>
+    </div>-->
+
+    <!--<div class="row field-margin" data-ng-if="editionTabs.currentFieldSelected.Values.Option.length > 0">
+        <div class="col-md-12 col s12">
+            <h4>{{'Etiquetas de los valores'}}</h4>
+            <ul class="current-selected-field-values">
+                <li data-ng-repeat="option in editionTabs.currentFieldSelected.Values.Option">
+                    <input type="text" data-ng-model="option.Name" value=""/>
+                </li>
+            </ul>
+        </div>
+        <div class="clear"></div>
+    </div>-->    
+</div>

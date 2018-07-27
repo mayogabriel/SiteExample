@@ -1,0 +1,139 @@
+<div class="card-panel header-content">
+    <div class="row">
+        <div class="col s12">
+            <span class="breadcrumb">Contactos</span>
+            <span class="breadcrumb">Listas</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 m6">
+            <h1>{{ "Listas"}}</h1>
+        </div>
+        <div class="col s12 m6 header-button">
+            <div class="wrap-button">
+                <a data-ui-sref="main.contacts.lists-store" class="waves-effect waves-light btn orange white-text"><i class="icon-add-usuarios"></i>crear nueva lista</a>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div ng-include="getTemplateView('submenu', 'contact', 'partials/')"></div>
+</div>
+
+<div class="card-panel"  st-table="listCtrl.rowCollection" 
+                         st-safe-src="listCtrl.rowCollection"
+                         st-pipe="listCtrl.callServer">
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col s12 l3">
+                <div class="card-panel anexo filtro grey lighten-4">
+                    <form>
+                         <div class="row">
+                            <h3>Filtrar por:</h3>
+                            <div class="input-field col s12 m6 l12">
+                                <input id="search" type="text" class="validate" ng-model="listCtrl.filter.search">
+                                <label for="search">Buscar</label>
+                            </div>
+                        </div>
+
+                        <div class="right-align">
+                            <button class="btn azul" type="submit" 
+                                st-custom-action
+                                callback="listCtrl.filterAction()">
+                                <i class="icon-filtros"></i> {{ 'button.filter' | translate }}
+                            </button>
+                            <button  class="btn celeste" 
+                                st-custom-action
+                                callback="listCtrl.resetFilter()"><i class="icon-cancelar"></i>{{ 'button.reset' | translate }}
+                            </button>    
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col s12 l9">
+                <div class="box box-solid"> 
+                    <table ng-show="listCtrl.rowCollection.length" ng-if="!listCtrl.tableLoading">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <st-select-all  all="listCtrl.rowCollection"
+                                                    count-selected-rows="listCtrl.countSelectedRows"
+                                                    ng-model="isAllSelected">
+                                    </st-select-all>
+                                </th>
+                                <th data-field="name">Lista</th>
+                                <th data-field="actives" class="hide-on-small-only">Contactos activos</th>
+                                <th data-field="total" class="hide-on-small-only">Contactos totales</th>
+                                <th data-field="actions"></th>
+                                <th data-field="edit"></th>
+                                <th data-field="remove"></th>
+                            </tr>
+                        </thead>
+                        <tbody  ng-if="!listCtrl.tableLoading">
+                            <tr ng-repeat="row in listCtrl.rowCollection" ng-if="listCtrl.rowCollection.length">
+                                <td><input type="checkbox" ng-checked="row.isSelected"  id='row-{{row.id}}'/><label for="row-{{row.id}}"></label></td>
+                                <td>{{ row.name }}</td>
+                                <td class="hide-on-small-only">{{ row.total_actives }}</td>
+                                <td class="hide-on-small-only">{{ row.total_contacts }}</td>
+                                <td class="acciones">
+                                    <div class="fixed-action-btn horizontal">
+                                        <a><i class="icon-acciones orange-text"></i></a>
+                                        <ul>
+                                            <li>
+                                                <a data-ui-sref="main.contacts.lists-import" class="btn-floating orange" tooltipped data-position="top" data-delay="50" data-tooltip="Importar">
+                                                    <i class="icon-importar-lista" aria-hidden="true"></i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="btn-floating orange" tooltipped data-position="top" data-delay="50" data-tooltip="Exportar">
+                                                    <i class="icon-exportar-lista" aria-hidden="true"></i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="btn-floating orange" tooltipped data-position="top" data-delay="50" data-tooltip="Cargar Contacto">
+                                                    <i class="icon-add-usuarios" aria-hidden="true"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </td>
+                                <td class="acciones"><a ui-sref="main.contacts.lists-edit({ ListID: row.id })"><i class="icon-editar orange-text"  tooltipped data-position="top" data-delay="50" data-tooltip="Editar"></i></a></td>
+                                <td class="acciones"><a ng-really-click="listCtrl.remove(row)" ng-really-message="¿ Seguro que desea eliminar la lista: {{row.name }} ?"><i class="icon-borrar orange-text"tooltipped data-position="top" data-delay="50" data-tooltip="Eliminar Lista"></i></a></td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="9" class="text-center">
+                                    <div st-next-prev-pagination=""
+                                         st-items-by-page="listCtrl.itemsByPage"></div>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+                    <div ng-if="!listCtrl.rowCollection.length && !listCtrl.tableLoading">
+                        <h3 class="center-align block">No se encontraron resultados</h3>
+                    </div>
+
+                    <div ng-if="listCtrl.tableLoading"  class="center-align ">        
+                        <div class="preloader-wrapper big active">
+                            <div class="spinner-layer spinner-blue-only">
+                                <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="gap-patch">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.box -->
+            </div>
+            <!-- ./col -->
+        </div>
+    </section>
+</div>

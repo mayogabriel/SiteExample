@@ -1,0 +1,18 @@
+<!-- Texto -->
+<div class="form-subscription-drop"
+     data-ng-class="{hover : $hover}"
+     data-ui-onhover="formEditionActions.hover($dragModel,$index,disableDrop1);"
+     data-ui-drop="formEditionActions.onDrop($dragModel,$index);"
+     data-disable-drop="disableDrop1">
+    <div class="drop-area"></div>
+    <div class="form-subscription-drop-arrow arrow-left"></div>
+    <div class="form-subscription-drop-arrow arrow-right"></div>
+</div>
+<customfield-edit-frame data-customfield-model="customfield"
+                        click-action="formEditionActions.editField(customfield)"
+                        mouse-enter-action="formEditionActions.mouseEnterField()"
+                        mouse-leave-action="formEditionActions.mouseLeaveField()"
+                        trash-button-action="formEditionActions.removeField(customfield)"
+                        enabled="enableCustomfieldEditFrame">
+    <p data-ng-style="customfield.style.css" data-ng-bind="customfield.Text"></p>
+</customfield-edit-frame>

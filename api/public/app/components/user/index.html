@@ -1,0 +1,12 @@
+<div data-ng-controller="UserController">
+    <div data-ng-if="route.mainView === 'user'">
+        <section data-ng-if="route.subView === 'list'" data-ng-controller="UserListController as listCtrl" data-ng-include="getTemplateView('user.list', 'user')"></section>
+        <section data-ng-if="route.subView === 'list.resseller'" data-ng-controller="UserListRessellerController as listCtrl" data-ng-include="getTemplateView('user.list.resseller', 'user')"></section>
+        <section data-ng-if="route.subView === 'add' || route.subView === 'edit'" data-ng-controller="UserFormController as formCtrl" data-ng-include="getTemplateView('user.form', 'user')"></section>
+        <section data-ng-if="route.subView === 'report'" data-ng-controller="UserReportController as reportCtrl" data-ng-include="getTemplateView('user.report', 'user')"></section>
+    </div>
+
+    <div data-ng-if="route.mainView === 'roles'">
+        <section data-ng-if="route.subView === 'list'" data-ng-controller="RoleListController as listCtrl" data-ng-include="getTemplateView('role.list', 'user')"></section>
+    </div>
+</div>

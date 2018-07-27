@@ -1,0 +1,131 @@
+*[input-field],
+.input-field {
+	.select-wrapper input.select-dropdown {
+		border: 1px solid grey;
+		border-radius: 4px;	
+		padding: 1rem 1rem 0 1rem;
+                height: 2rem;
+		width: calc(~"100% - 2rem");
+                margin: 0;
+	}
+        .select-wrapper ul.select-dropdown {
+            top: 100% !important;
+            [type="checkbox"] + label {
+                padding-left: 35px !important;
+            }
+            label {
+                width: auto !important;
+                left: auto !important;
+            }
+        } 
+	input, textarea {
+		border: 1px solid grey;
+		border-radius: 4px;
+		padding: 1rem 1rem 0;
+		width: calc(~"100% - 2rem");
+	    margin: 0;
+		&.invalid {
+			border: 1px solid red;
+		    box-shadow: none;
+		    ~ label {
+		    	color: red;
+		    }
+		}
+		&.valid {
+                   border: 1px solid grey !important;
+		    box-shadow: none;
+		    ~ label {
+		    	color: @cian;
+		    }
+		    ~ .prefix {
+		    	color: @cian;
+		    }
+		}
+		&:focus:not([readonly]) {
+			/*border: 1px solid @orange;*/
+		    box-shadow: none;
+		    ~ label {
+		    	/*color: @orange;*/
+		    }
+		}
+	}
+	input {
+		height: 2rem;
+	}
+
+	.prefix {
+		font-size: 1.7rem;
+		line-height: 3.1rem;
+
+		~ input, ~ textarea {
+			width: calc(~"100% - 5rem");
+		}
+	}
+	label {
+	    left: 1.7rem !important;
+	    width: 90% !important;
+	    top: .8rem;
+
+		&.active {
+			transform: translateY(-50%);
+		}
+	}
+	.select-wrapper {
+		&~label {
+			top: .7rem;
+		}
+	}
+}
+
+[type="checkbox"]+label {
+   /* padding-left: 1.2rem;*/
+}
+[type="checkbox"]:checked+label:before {
+    border-right: 2px solid @cian;
+    border-bottom: 2px solid @cian;
+    background: transparent;
+}
+[type="checkbox"]+label:before, [type="checkbox"]:not(.filled-in)+label:after {
+    border: none;
+    border: 2px solid @cian;
+    border-radius: 3px;
+}
+
+.select-wrapper span.caret {
+    position: absolute;
+    right: .5rem;
+    top: 1rem;
+}
+
+[type="radio"]:not(:checked)+label:before, [type="radio"]:not(:checked)+label:after {
+    border: 2px solid @cian;
+}
+[type="radio"]:checked + label:after, [type="radio"].with-gap:checked + label:after {
+    background-color: @cian;
+}
+[type="radio"]:checked+label:after, [type="radio"].with-gap:checked+label:before, [type="radio"].with-gap:checked+label:after {
+    border: 2px solid @cian;
+}
+
+.input-field .prefix.active {
+    color: @cian;
+}
+.dropdown-content li {
+    padding: 1rem;
+}
+
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+    background-color: rgb(255, 255, 255) !important;
+    color: rgb(0, 0, 0);
+}
+
+
+.import-option input[type=file] {
+    display: none;
+}
+
+
+.custom-form-nm .form-tab-design *[input-field] .select-wrapper input.select-dropdown, 
+.custom-form-nm .form-tab-design .input-field .select-wrapper input.select-dropdown {
+    padding: 0.5rem 1rem;
+}

@@ -1,0 +1,23 @@
+<!-- Email -->
+<div  unselectable="on">
+    <div class="form-subscription-drop"
+         data-ng-class="{hover : $hover}"
+         data-ui-onhover="formEditionActions.hover($dragModel,$index,disableDrop1);"
+         data-ui-drop="formEditionActions.onDrop($dragModel,$index);"
+         data-disable-drop="disableDrop1"
+         unselectable="on">
+        <div class="drop-area"></div>
+        <div class="form-subscription-drop-arrow arrow-left"></div>
+        <div class="form-subscription-drop-arrow arrow-right"></div>
+    </div>
+    <customfield-edit-frame data-customfield-model="customfield"
+                            click-action="formEditionActions.editField(customfield)"
+                            mouse-enter-action="formEditionActions.mouseEnterField()"
+                            mouse-leave-action="formEditionActions.mouseLeaveField()"
+                            no-delete="true"
+                            enabled="enableCustomfieldEditFrame">        
+        <input type="text" value="{{customfield.Label}}" name="{{customfield.Title}}" data-ng-style="style.input.cssGetter(style)" unselectable="on"/>
+    </customfield-edit-frame>
+
+
+</div>

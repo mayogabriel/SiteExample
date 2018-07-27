@@ -1,0 +1,71 @@
+<div class="navbar-fixed">
+    <nav class="white">
+        <div class="nav-wrapper">                    
+            <ul class="left">                      
+                <li class="logo-nm"><h1 class="logo-wrapper"><a href="javascript:void(0);" class="darken-1"><img src="assets/images/logo.png" alt="newsmaker"></a> <span class="logo-text">Newsmaker</span></h1></li>
+            </ul>
+            <a href="#" data-activates="slide-out" class="sidebar-collapse hide-on-large-only"><i class="icon-left orange-text"></i></a>
+            <ul class="right">
+                <li><a class='dropdown-button' href='javascript:void(0);' data-activates='dropUser' data-beloworigin="true"  dropdown data-hover="false" ><span class="usuario"></span>{{ me.getFullName() }}</a></li>
+                
+                <li>
+                    <a href="#!" href='javascript:void(0);' data-activates='dropPlan' dropdown data-hover="false">
+                        <div class="c100 p33 center">
+                            <div class="slice"><div class="bar"></div><div class="fill"></div></div>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a  class="orange-text" 
+                        data-activates="alert" 
+                        data-sidenav="right" 
+                        data-menuwidth="500" 
+                        data-closeonclick="false">
+                        <i class="icon-notificaci-on"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<ul id='dropUser' class='dropdown-content collection'>
+    <li>
+        <a class="medio" data-ui-sref="main.user-account">Mi cuenta</a><a class="medio" ui-sref="main.coming-soon">Facturaci&oacute;n</a>
+    </li>
+    <li>
+        <a href="javascript:void(0);" ng-click="mainCtrl.logout()">{{'Cerrar sesi&oacute;n' | translate }}</a>
+    </li>
+</ul>
+
+<ul id='dropPlan' class='dropdown-content collection'>
+    <li>
+        <div class="row">
+            <div class="col">
+                <h3>MI PLAN</h3>
+            </div>
+        </div>
+    </li>
+    <li>
+        <div class="row">
+            <div class="col s2"><b>ABONOS</b></div>
+            <div class="col s2">
+                <div class="c100 p33 center">
+                    <span class="blue-text">33%</span>
+                    <div class="slice"><div class="bar"></div><div class="fill"></div></div>
+                </div>
+            </div>
+            <div class="col s4">1500 env&iacute;os consumidos, disponibles: <span class="blue-text">500</span> 
+            </div>
+            <div class="col s4"><a class="waves-effect waves-light btn small blue white-text"  href="plans/quote">Cambiar plan</a></div>
+        </div>
+    </li>
+    <li>
+        <div class="row">
+            <div class="col s4"><b>CREDITOS</b></div>
+            <div class="col s4">Disponibles: <span class="blue-text">500</span> 
+            </div>
+            <div class="col s4"><a class="waves-effect waves-light btn small blue white-text" href="plans/credits">Comprar creditos</a></div>
+        </div>
+    </li>
+</ul>

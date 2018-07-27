@@ -1,0 +1,127 @@
+<header class='card-panel header-content '>
+    <!--<div class="row">
+        <div class="col s12">
+            <span class="breadcrumb">Formu</span>
+            <span class="breadcrumb">Listas</span>
+        </div>
+    </div>-->
+    <div class="row">
+        <div class="col s12 m6">
+            <h1>{{ "Modificar diseño y campos."}}</h1>
+        </div>
+    </div>
+    <hr>
+    <div ng-include="getTemplateView('submenu', 'contact', 'partials/')"></div>
+</header>
+<div class="card-panel custom-form-nm">
+    <div class="row right-align">
+        <div class="col s12" style="margin-top: 1rem;">
+            <button class="btn azul white-text waves-effect waves-light" 
+                    type="button" 
+                    data-ng-click="formEditionActions.closeCustomfieldEdition();formActions.saveInnerChanges()" 
+                    name="actionApply">Aplicar
+                    <span> <i class="material-icons right">send</i></span>
+            </button>
+            <button class="btn celeste white-text waves-effect waves-light" 
+                    type="button" 
+                    data-ng-click="formActions.goBack()"
+                    name="actionGoback">Cancelar
+                    <i class="material-icons right">reply</i>
+            </button>
+            <hr>
+        </div>
+    </div>
+    <div class='row'>
+        <div class="col-md-6 col s6"  id="editar">
+            <article>
+                <div class="form-tab-header-container">
+                    <div class="row">
+                        <div class="col s12">
+                            <ul class="tabs" tabs >
+                                <li class="tab col s6" 
+                                    data-ng-click="editionTabs.switch('elements'); formEditionActions.closeCustomfieldEdition(true);"
+                                    data-ng-class="{'active':editionTabs.tab === 'elements'}">
+                                    <a href="#elements" data-ng-class="{'active':editionTabs.tab === 'elements'}">{{'Elementos'}}</a>
+                                </li>
+                                <li class="tab col s6" 
+                                    data-ng-click="editionTabs.switch('design')" 
+                                    data-ng-class="{'active':editionTabs.tab === 'design'}">
+                                    <a href="#test1" data-ng-class="{'active':editionTabs.tab === 'design'}">{{'Textos & Diseños'}}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-tab-body">
+                    <div class="form-tab-elements form-tab-body-item"
+                         data-ng-show="editionTabs.tab === 'elements'"
+                         data-ng-class="{'active':editionTabs.tab === 'elements'}">
+                        <h3>{{'Arrastra y suelta los elementos al formulario, así de simple'}}</h3>
+                        <br/><br/>
+                        <h4>{{'Texto'}}</h4>
+                        <ul class="form-fixedfields-list">
+                            <li class="form-fixedfields-list-item-container"
+                                data-ng-repeat="customfield in availableItems| filter : {CanRepeat : true}">
+                                <button class='form-fixedfields-list-item'
+                                        data-ng-click="formEditionActions.addField(customfield)"
+                                        data-ui-drag="customfield"
+                                        data-ng-class-odd="'form-fixedfields-list-item-odd'">
+                                        <i class="fa fa-arrows blue-text" aria-hidden="true"></i>
+                                </button>
+                            </li>
+                        </ul>
+                        <h4>{{'Campos'}}</h4>
+                        <ul class='form-customfields-lists'>
+                            <!--<li data-ng-show="maillistService.customfield.fetching">
+                                <ui-loader-wave data-text="{{'Cargando campos personalizados'}}" style="margin-top: 100px;"></ui-loader-wave>
+                            </li>-->
+                            <!-- data-ng-repeat="customfield in availableItems| filter :{ShowInList : true} | filter:{field_type : '!Notice'}| filter:{field_type : '!Hidden field'} | filter :{field_type : '!Password field'} | filter :{field_type : '!Text area'} | filter :{field_type : '!Privacy Policy'} " -->
+                            <li class="form-customfields-list-item-container col l4 m6 s6 xs12"
+                                data-ng-repeat="customfield in availableItems| filter :{ShowInList : true}" >
+                                <button class='form-customfields-list-item lista'
+                                        data-ng-click="formEditionActions.addField(customfield)"
+                                        data-ui-drag="customfield"
+                                        disable-drag="customfield.used"
+                                        data-ng-class="{used : customfield.used}"
+                                        data-ng-disabled="customfield.used"
+                                        data-ng-class-odd="'form-customfields-list-item-odd'">
+                                    <div class="field-title ">{{customfield.name}}</div>
+                                    <span>{{customfield.GetLabelFieldType()}}</span>
+                                    <div class="field-drag-handle" >
+                                        <i class="fa fa-arrows blue-text" aria-hidden="true"></i>
+                                    </div>
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="form-tab-design form-tab-body-item" data-ng-show="editionTabs.tab === 'design'" data-ng-class="{'active': editionTabs.tab === 'design'}">
+                        <div class="no-element-selected" data-ng-if="editionTabs.currentFieldSelected === false">
+                            <h5>{{'Selecciona algún elemento del formulario.'}}</h5>
+                        </div>
+
+                        <div class="form-appareance">
+                            <!-- Cuerpo -->
+                            <div data-ng-include="getTemplateView('attributes-body', 'contact', 'partials/tab-design')"></div>
+
+                            <!-- Texto custom -->
+                            <div data-ng-include="getTemplateView('attributes-custom-text', 'contact', 'partials/tab-design')"></div>
+
+                            <!-- Campos -->
+                            <div data-ng-include="getTemplateView('attributes-fields', 'contact', 'partials/tab-design')"></div>
+
+                            <!-- Botón -->
+                            <div data-ng-include="getTemplateView('attributes-buttons', 'contact', 'partials/tab-design')"></div>
+
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+        <div class="col-md-6 col s6" data-ng-click="formEditionActions.closeCustomfieldEdition(true);">
+            <article class="full-width" >
+                <h3>Previsualizacion</h3>
+                <div data-ng-include="getTemplateView('form-design-preview', 'contact', 'partials')"></div>
+            </article>
+        </div>
+    </div>
+</div>

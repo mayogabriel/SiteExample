@@ -1,0 +1,19 @@
+[type="radio"]:checked+label:after, [type="radio"].with-gap:checked+label:after {
+    background-color: @cian;
+}
+
+.hasError input {
+    border: 1px solid red !important;
+    color: red;
+    ~ i {
+        color: red;
+    }
+}
+.hasError label.msgError.active ,
+.hasError label.msgError {
+     color: red !important;
+}
+
+.hasError i {
+    color: red !important;
+}

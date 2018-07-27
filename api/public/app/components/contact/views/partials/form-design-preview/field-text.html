@@ -1,0 +1,23 @@
+<!-- Campos de texto -->                               
+<div    class="form-subscription-drop"
+        data-ng-class="{hover : $hover}"
+        ui-onhover="formEditionActions.hover($dragModel,$index);"
+        ui-drop="formEditionActions.onDrop($dragModel,$index);">
+    <div class="drop-area"></div>
+    <div class="form-subscription-drop-arrow arrow-left"></div>
+    <div class="form-subscription-drop-arrow arrow-right"></div>
+</div>
+<customfield-edit-frame data-customfield-model="customfield"
+                        click-action="formEditionActions.editField(customfield)"
+                        mouse-enter-action="formEditionActions.mouseEnterField()"
+                        mouse-leave-action="formEditionActions.mouseLeaveField()"
+                        trash-button-action="formEditionActions.removeField(customfield)"
+                        enabled="enableCustomfieldEditFrame">
+    <div data-ng-if="customfield.RenderType === 'input'">
+        <input type="text" value="{{customfield.name}}" name="" data-ng-style="style.input.cssGetter(style)"/>
+    </div>
+    
+    <div data-ng-if="customfield.RenderType === 'textarea'">
+        <textarea name="{{customfield.name}}" data-ng-style="style.textarea.cssGetter(style)">{{customfield.Label}}</textarea>
+    </div>
+</customfield-edit-frame>

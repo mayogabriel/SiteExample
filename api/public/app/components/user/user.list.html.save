@@ -1,0 +1,141 @@
+<div class="card-panel" st-table="listCtrl.rowCollection" 
+                     st-safe-src="listCtrl.rowCollection"
+                     st-pipe="listCtrl.callServer">
+    
+    <div class="row cabecera">
+        <div class="col s6">
+            <h2 ng-if="!listCtrl.user">{{ 'user.users' | translate }}</h2>
+            <h2 ng-if="listCtrl.user"> Users by {{ listCtrl.user.getFullName() }}</h2>
+        </div>
+        <div class="col s6 right-text">
+            <a ng-if="!listCtrl.user" ui-sref="main.user-create" class="waves-effect waves-light btn-large orange white-text">
+                <i class="icon-add-usuarios"></i>{{ 'user.add_a_user'| translate }}
+            </a>
+            <a ng-if="listCtrl.user" href="users/" class="waves-effect waves-light btn-large blue white-text">
+                <i class="icon-cancelar"></i>Go Back to Users
+            </a>            
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col m12 l3" ng-if="!listCtrl.filter.parent_id">
+            <div class="card-panel grey lighten-4">
+                <div class="input-field">
+                    <input id="filter-created-at" 
+                           type="text" 
+                           class="datepicker" 
+                           input-date
+                           container="body"
+                           format="yyyy-mm-dd"
+                           formatSubmit="yyyy-mm-dd"
+                           today="today"
+                           clear="clear"
+                           close="close"
+                           placeholder="Select Month"
+                           select-years="30"
+                           select-months="true" 
+                           ng-model="listCtrl.filter.created_at"
+                           ng-required="true">
+                    <label for="dateDesde">Desde</label>
+                </div>
+                <div input-field>
+                    <select id="Status" 
+                        class="validate" 
+                        ng-model="listCtrl.filter.role_ids"
+                        material-select
+                        multiple
+                        watch 
+                        required="" 
+                        ng-options="role.id as role.display_name for role in listCtrl.roles">    
+                        <option value="" disabled selected>Choose Roles</option>
+                    </select>
+                </div>
+                <div class="input-field">
+                    <input type="text" class="form-control" ng-model="listCtrl.filter.search"/>
+                    <label for="search">Buscar</label>
+                </div>                
+                <a class="btn-floating btn blue " 
+                    ng-disabled="listCtrl.tableLoading" 
+                    st-custom-action
+                    callback="listCtrl.filterAction()">
+                    <i class="icon-filtros" tooltipped data-position="top" data-delay="50" data-tooltip="{{ 'button.filter' | translate }}"></i> 
+                </a>
+                <a  class="btn-floating btn blue lighten-2" 
+                    ng-disabled="listCtrl.tableLoading" 
+                    st-custom-action
+                    callback="listCtrl.resetFilter()"><i tooltipped class="icon-cancelar" data-position="top" data-delay="50" data-tooltip="{{ 'button.reset' | translate }}" ></i>
+                </a>    
+            </div>
+        </div>
+        <div class="col m12 l9" ng-class="{'l12' : listCtrl.user}">
+            <table>
+                <thead>
+                    <tr>
+                       <!--<th>
+                            <st-select-all  all="listCtrl.rowCollection"
+                                            count-selected-rows="listCtrl.countSelectedRows"
+                                            ng-model="isAllSelected">
+                            </st-select-all>
+                        </th>-->
+                        <th st-sort="created_at" data-field="fecha" class="hide-on-small-only">Fecha</th>
+                        <th data-field="name">Nombre</th>
+                        <th st-sort="email" data-field="mail">Mail</th>
+                        <th st-sort="status" data-field="status" class="hide-on-small-only">Estado</th>
+                        <th data-field="mail" ng-show="!listCtrl.user">Role</th>
+                        <th st-sort="quota" data-field="quota" class="hide-on-small-only">Abono</th>
+                        <th st-sort="credit" data-field="credit" class="hide-on-small-only">Credito</th>
+                        <th st-sort="consumed" data-field="consumed" class="hide-on-small-only">Campañas</th>
+                        <th data-field="actions"></th>
+                    </tr>
+                </thead>
+                <tbody  ng-if="!listCtrl.tableLoading">
+                    <tr ng-repeat="row in listCtrl.rowCollection" ng-if="listCtrl.rowCollection.length">
+                        <!--<td><input type="checkbox" ng-checked="row.isSelected" id='row-{{row.id}}'/><label for="row-{{row.id}}"></label></td>-->
+                        <td class="hide-on-small-only">{{ row.created_at | amDateFormat: 'DD.MM.YYYY' }}</td>
+                        <td>{{ row.getFullName() }} <div class="chip red white-text" ng-if="listCtrl.isTimestamp(row.last_login_at) &&  && !row.status">New</div></td>
+                        <td><a href="users/{{ row.id }}/edit">{{ row.email }}</a></td>
+                        <td class="hide-on-small-only">{{ row.status | booleanStatus }}</td>
+                        <td class="hide-on-small-only" ng-show="!listCtrl.user">{{ row.roles[0].name }}</td>
+                        <td class="hide-on-small-only">{{ row.plan.quota }}</td>
+                        <td class="hide-on-small-only">{{ row.plan.credit }}</td>
+                        <td class="hide-on-small-only">{{ row.plan.consumed }}</td>
+                        <td class="acciones">
+                            <div class="fixed-action-btn horizontal">
+                                <a><i class="icon-acciones orange-text"></i></a>
+                                <ul>
+                                    <li><a href="users/{{ row.id }}/edit" class="btn-floating orange" tooltipped data-position="top" data-delay="50" data-tooltip="Editar"><i class="icon-editar"></i></a></li>
+                                    <li><a href="#" ng-really-click="listCtrl.remove(row)" class="btn-floating red" ><i class="icon-borrar" tooltipped data-position="top" data-delay="50" data-tooltip="Borrar"></i></a></li>
+                                    <li><a href="users/{{ row.id }}/reports-campaign" class="btn-floating orange" tooltipped data-position="top" data-delay="50" data-tooltip="Reportes"><i class="icon-reportes"></i></a></li>
+                                    <li><a href="#" class="btn-floating orange" tooltipped data-position="top" data-delay="50" data-tooltip="Historial de pedidos"><i class="icon-historial"></i></a></li>
+                                    <li><a href="users/{{ row.id }}" ng-if="row.hasRole('reseller')" class="btn-floating blue" tooltipped data-position="top" data-delay="50" data-tooltip="Usuarios"><i class="icon-usuarios"></i></a></li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr ng-if="!listCtrl.rowCollection.length">
+                        <td colspan="9" class="text-center">
+                            <h5>There are no users</h5>
+                        </td>
+                    </tr>
+                </tbody>
+                <tbody ng-if="listCtrl.tableLoading"  class="fade">
+                    <tr>
+                        <td colspan="9" class="center-align" >
+                            <i class="fa fa-lg fa-spinner fa-spin"></i>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="9" class="text-center">
+                            <div st-template="app/shared/override/smart-table/pagination.html"
+                                 st-next-prev-pagination=""
+                                 st-items-by-page="listCtrl.itemsByPage"></div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+
